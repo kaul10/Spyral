@@ -270,6 +270,7 @@ function dsPieChart(){
 		   color = d3.scale.category20()    //builtin range of colors
 		   ;
 
+
   var div = d3.select("body").append("div") 
     .attr("class", "tooltip2")       
     .style("opacity", 0);
@@ -414,7 +415,8 @@ function dsPieChart(){
 	function up(d, i) {
 	       //console.log(dataset[i].category);
          //console.log(d.data.category);
-         //console.log(color(i))
+         console.log(i);
+         console.log(color(i))
 				/* update bar chart when user selects piece of the pie chart */
 				updateBarChart(dataset[i].category);
 				updateBarChart(d.data.category, color(i));
@@ -9818,13 +9820,14 @@ d3.select("table").remove();
 
     d3.tsv("cvss_more.tsv", function(error, data){
 
+      console.log(Object.keys(data[0]));
 
   // filter year
   var data = data.filter(function(d){return d.Technology == variable});
   // Get every column value
   var columns = Object.keys(data[0])
     .filter(function(d){
-      return ((d != "cvss_id"));
+      return ((d != "cvss_id" && d != "Month" && d != "Year"));
     });
 
   var header = thead.append("tr")
@@ -10005,7 +10008,9 @@ function dsLineChart() {
 	    ;
 
 	var yScale = d3.scale.linear()
-	    .domain([0, d3.max(firstDatasetLineChart, function(d) { return d.measure; })])
+	    .domain([0, d3.max(firstDatasetLineChart, function(d) { 
+        console.log(d.measure);
+        return d.measure; })])
 	    .range([height, 0])
 	    ;
 	
@@ -10059,7 +10064,7 @@ function dsLineChart() {
 	    
 
 	    //.attr("stroke", function (d) { return d.measure==datasetMeasureMin ? "red" : (d.measure==datasetMeasureMax ? "green" : "steelblue") } )
-	circles.attr("fill", function (d) { return d.measure==d3.min(firstDatasetLineChart, function(d) { return d.measure; }) ? "red" : (d.measure==d3.max(firstDatasetLineChart, function(d) { return d.measure; }) ? "green" : "white") } )
+	circles.attr("fill", function (d) { return d.measure==d3.min(firstDatasetLineChart, function(d) { return d.measure; }) ? "green" : (d.measure==d3.max(firstDatasetLineChart, function(d) { return d.measure; }) ? "red" : "white") } )
 	    //.attr("stroke-width", function (d) { return d.measure==datasetMeasureMin || d.measure==datasetMeasureMax ? "3px" : "1.5px"} )
 	    .attr("cx", line.x())
 	    .attr("cy", line.y())
@@ -10188,7 +10193,7 @@ function updateLineChart(group, colorChosen) {
 	.transition()
 		.duration(750)
 	   .attr("class", "dot")
-	   .attr("fill", function (d) { return d.measure==d3.min(currentDatasetLineChart, function(d) { return d.measure; }) ? "red" : (d.measure==d3.max(currentDatasetLineChart, function(d) { return d.measure; }) ? "green" : "white") } )
+	   .attr("fill", function (d) { return d.measure==d3.min(currentDatasetLineChart, function(d) { return d.measure; }) ? "green" : (d.measure==d3.max(currentDatasetLineChart, function(d) { return d.measure; }) ? "red" : "white") } )
 	   .attr("cx", line.x())
 	   .attr("cy", line.y())
 	   .attr("r", 3.5)
@@ -10250,7 +10255,7 @@ d3.tsv("cvss_more.tsv", function(error, data){
   // Get every column value
   var columns = Object.keys(data[0])
     .filter(function(d){
-      return ((d != "cvss_id"));
+      return ((d != "cvss_id" && d != "Month" && d != "Year"));
     });
 
   var header = thead.append("tr")
@@ -10311,25 +10316,61 @@ d3.tsv("cvss_more.tsv", function(error, data){
 });
 
 //Choosing new value now
-
+/*
+var dataset = [
+      {category: "AIXAPAR", measure: 0.032},
+        {category: "APPLE", measure: 0.01},
+        {category: "BID", measure: 0.063},
+        {category: "BUGTRAQ", measure: 0.031},
+        {category: "CERT-VN", measure: 0.021},
+        {category: "CISCO", measure: 0.196},
+        {category: "CONFIRM", measure: 0.224},
+        {category: "DEBIAN", measure: 0.014},
+        {category: "FEDORA", measure: 0.017},
+        {category: "FULLDISC", measure: 0.004},
+        {category: "GENTOO", measure: 0.007},
+        {category: "HP", measure: 0.013},
+        {category: "JVN", measure: 0.03},
+        {category: "MISC", measure: 0.115},
+        {category: "MLIST", measure: 0.016},
+        {category: "MS", measure: 0.048},
+        {category: "REDHAT", measure: 0.012},
+        {category: "SECTRACK", measure: 0.026},
+        {category: "SECUNIA", measure: 0.004},
+        {category: "SUSE", measure: 0.116},
+        {category: "XF", measure: 0.001}
+        ]
+        ; 
+*/
 d3.select(".dropdown-select")
   .on('change', function(){
 
-      
+
 
     val = this.value;
 
-      console.log(val);
+      //console.log(dataset);
       
-      color = d3.scale.category20();
-
-    function up_bar(d, i) {
-  
-      console.log(d);
+    var color = d3.scale.category20();
+     
+    function up_bar(d,i) {
+      var categories = ["AIXAPAR","APPLE","BID","BUGTRAQ","CERT-VN","CISCO","CONFIRM","DEBIAN","FEDORA","FULLDISC","GENTOO",
+      "HP","JVN","MISC","MLIST","MS","REDHAT","SECTRACK","SECUNIA","SUSE","XF"];
+      for(j=0;j<categories.length;j++){
+        console.log(j);
+        if(d == categories[j]){
+          var data = categories[j]
+        //console.log(color.range()[2]);
+        //console.log(j);
+        updateBarChart(data);
+        updateBarChart(data, color.range()[j]);
+        updateLineChart(data, color.range()[j]);
+}
+}
         /* update bar chart when user selects piece of the pie chart */
-        updateBarChart(d);
-        updateBarChart(d, color(i));
-        updateLineChart(d, color(i));
+        //updateBarChart(d);
+        //updateBarChart(d, color(i));
+        //updateLineChart(d, color(i));
        
   }
 
@@ -10369,7 +10410,7 @@ d3.select("table").remove();
   //console.log(data);
   var columns = Object.keys(data[0])
     .filter(function(d){
-      return ((d != "cvss_id"));
+      return ((d != "cvss_id" && d != "Month" && d != "Year"));
     });
 
   var header = thead.append("tr")
