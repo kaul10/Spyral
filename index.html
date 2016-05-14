@@ -12,7 +12,7 @@
 
 #table-location {
     position: absolute;
-    top: 425px;
+    top: 490px;
     width: 100%;
     float: left;
     border: 1px grey;
@@ -32,24 +32,24 @@ td {
 
 #pieChart {    
 	position:absolute;
-	top:10px;
+	top:100px;
 	left:10px;
 	width:400px;
-	height: 400px; 
+	height: 350px; 
 }
 
 
 
 #lineChart {    
 	position:absolute;
-	top:10px;
+	top:100px;
 	left:410px;
 	height: 150px;
 }
 
 #barChart {
 	position:absolute;
-	top:160px;
+	top:235px;
 	left:450px;
 	height: 250px;
 }
@@ -149,15 +149,29 @@ div.tooltip2 {
 }
 
 .dropdown {
-  top: 400px;
-  position: center;
+  top: 460px;
+  float: left;
+  margin-left: 10px;
 
+}
+
+#logo {
+  width: 800px;
+}
+
+#image {
+  width: 300px;
+  height: 100px;
+  float: right;
 }
 				 
     </style>
   </head>
   <body>
-    
+    <div id="logo">
+    <img id ="image" src="s3.png">
+    </div>
+
     <div id="pieChart"></div>
     <div id="barChart"></div>  
     <div id="lineChart"></div>
@@ -260,8 +274,8 @@ function dsPieChart(){
 	      ]
 	      ;     
 
-	var 	width = 400,
-		   height = 375,
+	var 	width = 325,
+		   height = 325,
 		   outerRadius = Math.min(width, height) / 2,
 		   innerRadius = outerRadius * .999,   
 		   // for animation
@@ -9508,7 +9522,7 @@ function dsBarChartBasics() {
 
 		var margin = {top: 30, right: 5, bottom: 20, left: 60},
 		width = 800 - margin.left - margin.right,
-	  height = 250 - margin.top - margin.bottom,
+	  height = 225 - margin.top - margin.bottom,
 		colorBar = d3.scale.category20(),
 		barPadding = 1
 		;
@@ -9786,7 +9800,7 @@ function updateBarChart(group, colorChosen) {
 
 		svg.selectAll("text.title") // target the text element(s) which has a title class defined
 			.attr("x", (width + margin.left + margin.right)/2)
-			.attr("y", 225)
+			.attr("y", 200)
 			.attr("class","title")				
 			.attr("text-anchor", "middle")
 			.text(group + "'s Risk Score 2015-16")
@@ -9963,7 +9977,7 @@ function dsLineChartBasics() {
 
 	var margin = {top: 20, right: 40, bottom: 5, left: 50},
 	    width = 800 - margin.left - margin.right,
-	    height = 200 - margin.top - margin.bottom
+	    height = 150 - margin.top - margin.bottom
 	    ;
 		
 		return {
