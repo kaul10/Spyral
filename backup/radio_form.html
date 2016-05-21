@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		table#t01 {
+		    width:100%;
+		}
+		table#t01, table#t01 th, table#t01 td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		}
+		table#t01 th, table#t01 td {
+		    padding: 5px;
+		    text-align: left;
+		}
+		table#t01 tr:nth-child(even) {
+		    background-color: #eee;
+		}
+		table#t01 tr:nth-child(odd) {
+		   background-color:#fff;
+		}
+		table#t01 th	{
+		    background-color: black;
+		    color: white;
+		}
+	</style>
+</head>
+<body>
+	<table id="t01">
+		<tr>
+		    <th>Average External Factors</th>
+		    <th></th>		
+  		</tr>
+		<tr>
+			<td><p><b>Is any of your software deployed in clouds?</b></p></td>
+			<td>
+				<form>
+			 		<input type="radio" name="clouds" value="1" checked onchange = "formChanged()">Yes<br>			 		
+			 		<input type="radio" name="clouds" value="0" checked onchange = "formChanged()">No<br>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td><p><b>Does your customers PII data reside with you?</b></p></td>
+			<td>
+				<form>
+			 		<input type="radio" name="pii" value="1" checked>Yes<br>
+			 		<input type="radio" name="pii" value="0" checked>No<br>
+				</form>
+			</td>
+		</tr>
+		<tr>	
+			<td><p><b>Do you have a cyber insurance which covers you against threats?</b></p></td>
+			<td>
+				<form>
+			 		<input type="radio" name="cyberins" value="1" checked>Yes<br>
+			 		<input type="radio" name="cyberins" value="0" checked>No<br>
+			 		<input type="radio" name="cyberins" value="0.5" checked>Partially Covered<br>
+				</form>
+			</td>
+		</tr>
+		<tr>	
+			<td><p><b>Do you have work related to government employees or research?</b></p></td>
+			<td>
+				<form>
+			 		<input type="radio" name="gov" value="1" checked>Yes<br>
+			 		<input type="radio" name="gov" value="0" checked>No<br>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td><p><b>Have you outsourced your infrastructure to contractors?</b></p></td>
+			<td>
+				<form>
+			 		<input type="radio" name="cont" value="1" checked>Yes<br>
+			 		<input type="radio" name="cont" value="0" checked>No<br>
+			 		<input type="radio" name="cont" value="0.5" checked>Partially Covered<br>
+				</form>
+			</td>
+		</tr>
+		<tr>	
+			<td><p><b>Are you compliant to laws and/or standards like PCI, SOX, ISO?</b></p></td>
+			<td>
+				<form>	
+			 		<input type="radio" name="laws" value="1" checked>Yes<br>
+			 		<input type="radio" name="laws" value="0" checked>No<br>
+			 		<input type="radio" name="laws" value="1" checked>Dont Know<br>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<th>Max Information Level</th>
+			<th></th>		
+  		</tr>
+		<tr>
+			<td><p><b>What is the highest level of information you are planning to assess?</b></p></td>
+			<td>
+				<form>
+			 		<input type="radio" name="assess" value="1" checked onchange = "formChanged()">Top Secret<br>			 		
+			 		<input type="radio" name="assess" value="1" checked onchange = "formChanged()">Secret<br>
+			 		<input type="radio" name="assess" value="1" checked onchange = "formChanged()">Confidential<br>
+			 		<input type="radio" name="assess" value="1" checked onchange = "formChanged()">Restricted<br>
+			 		<input type="radio" name="assess" value="0.5" checked onchange = "formChanged()">Official<br>
+			 		<input type="radio" name="assess" value="0" checked onchange = "formChanged()">Unclassified<br>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<th>Likelihood</th>
+			<th></th>
+		</tr>
+		<tr>	
+			<td><p><b>What is the number of systems you want to asses risk for?</b></p></td>
+			<td>
+				<form>	
+			 		<input id="txt1" type="text" name="numsys"><br>
+				</form>
+			</td>
+		</tr>
+		<tr>	
+			<td><p><b>What is the total number of system you have in your environment?</b></p></td>
+			<td>
+				<form>	
+			 		<input id="txt2" type="text" name="totsys"><br>
+			 		<input id="btn2" type="button" value="submit" onclick="formChanged()">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<a id='testop' ></a>
+	<script type="text/javascript">
+
+	var radios1 = document.getElementsByName("clouds");
+		radios1[1].value = 0;
+		//console.log(radios1[1].value)
+	var radios2 = document.getElementsByName("pii");
+		radios2[1].value = 0;
+	var radios3 = document.getElementsByName("cyberins");
+		radios3[2].value = 0.5;
+	var radios4 = document.getElementsByName("gov");
+		radios4[1].value = 0;
+	var radios5 = document.getElementsByName("cont");
+		radios5[2].value = 0.5;
+	var radios6 = document.getElementsByName("laws");
+		radios6[2].value = 1;
+	var radios7 = document.getElementsByName("assess");
+		radios7[5].value = 0;
+		//console.log(radios7[5].value)
+
+
+	function formChanged(){
+			var radios1 = document.getElementsByName("clouds");
+			for(var i=0;i<radios1.length;i++){
+				if(radios1[i].checked){
+					//console.log(radios1[i].value);
+					break;	
+				}
+				
+			}
+
+			var radios2 = document.getElementsByName("pii");
+			for(var i=0;i<radios2.length;i++){
+				if(radios2[i].checked){
+					//console.log(radios2[i].value);
+					break;	
+				}
+				
+			}
+
+			var radios3 = document.getElementsByName("cyberins");
+			for(var i=0;i<radios3.length;i++){
+				if(radios3[i].checked){
+					//console.log(radios2[i].value);
+					break;	
+				}
+				
+			}
+
+			var radios4 = document.getElementsByName("gov");
+			for(var i=0;i<radios4.length;i++){
+				if(radios4[i].checked){
+					//console.log(radios2[i].value);
+					break;	
+				}
+				
+			}
+
+			var radios5 = document.getElementsByName("cont");
+			for(var i=0;i<radios5.length;i++){
+				if(radios5[i].checked){
+					//console.log(radios2[i].value);
+					break;	
+				}
+				
+			}
+
+			var radios6 = document.getElementsByName("laws");
+			for(var i=0;i<radios6.length;i++){
+				if(radios6[i].checked){
+					//console.log(radios2[i].value);
+					break;	
+				}
+				
+			}
+
+			var radios7 = document.getElementsByName("assess");
+			for(var i=0;i<radios7.length;i++){
+				if(radios7[i].checked){
+					console.log(radios7[i].value);
+					break;	
+				}
+				
+			}
+
+			var text1 = document.getElementById("txt1").value;
+				console.log(text1);
+			
+
+			var text2 = document.getElementById("txt2").value;
+				console.log(text2);
+
+			
+
+	}
+	
+	</script>
+</body>
+</html>

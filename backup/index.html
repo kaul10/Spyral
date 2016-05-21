@@ -19,8 +19,6 @@
     border: 1px grey;
     text-align: center;
     table-layout: fixed;
-    overflow: scroll;
-    height: 500px;
 }
 
 th, tr {
@@ -68,9 +66,8 @@ td {
   position:absolute;
   top:500px;
   left:10px;
-  height: 300px;
+  height: 250px;
   width: 500px;
-  overflow: scroll;
 }
 
 .slice {
@@ -221,34 +218,10 @@ div.tooltip3 {
   font-family: sans-serif;
   font-weight: bold;
 }
-
-table#t01 {
-        width:100%;
-    }
-    table#t01, table#t01 th, table#t01 td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        
-    }
-    table#t01 th, table#t01 td {
-        padding: 5px;
-        text-align: left;
-    }
-    table#t01 tr:nth-child(even) {
-        background-color: #eee;
-    }
-    table#t01 tr:nth-child(odd) {
-       background-color:#fff;
-    }
-    table#t01 th  {
-        background-color: black;
-        color: white;
-    }
          
     </style>
   </head>
   <body>
-
     <div id="logo">
     <img id ="image" src="s3.png">
     </div>
@@ -257,11 +230,11 @@ table#t01 {
     <div id="barChart"></div>  
     <div id="lineChart"></div>
     <div id="scatterChart"></div>
-    <div id="table-location"></div>
-   <!-- <iframe src="radio_form.html" id="questiontable">
+    <iframe src="radio_form.html" id="questiontable">
       
     </iframe>
--->
+
+
     
     <div class="dropdown" align = "center">
       <select name="one" class="dropdown-select">
@@ -292,254 +265,9 @@ table#t01 {
 
   
 
- <div id="questiontable">   
- <table id="t01">
-    <tr>
-        <th>Average External Factors</th>
-        <th></th>   
-      </tr>
-    <tr>
-      <td><p><b>Is any of your software deployed in clouds?</b></p></td>
-      <td>
-        
-          <input type="radio" name="clouds" value="1" checked onchange = "formChanged()">Yes<br>          
-          <input type="radio" name="clouds" value="0" checked onchange = "formChanged()">No<br>
-        
-      </td>
-    </tr>
-    <tr>
-      <td><p><b>Does your customers PII data reside with you?</b></p></td>
-      <td>
-        
-          <input type="radio" name="pii" value="1" checked onchange = "formChanged()">Yes<br>
-          <input type="radio" name="pii" value="0" checked onchange = "formChanged()">No<br>
-        
-      </td>
-    </tr>
-    <tr>  
-      <td><p><b>Do you have a cyber insurance which covers you against threats?</b></p></td>
-      <td>
-        
-          <input type="radio" name="cyberins" value="1" checked onchange = "formChanged()">Yes<br>
-          <input type="radio" name="cyberins" value="0" checked onchange = "formChanged()">No<br>
-          <input type="radio" name="cyberins" value="0.5" checked onchange = "formChanged()">Partially Covered<br>
-        
-      </td>
-    </tr>
-    <tr>  
-      <td><p><b>Do you have work related to government employees or research?</b></p></td>
-      <td>
-        
-          <input type="radio" name="gov" value="1" checked onchange = "formChanged()">Yes<br>
-          <input type="radio" name="gov" value="0" checked onchange = "formChanged()">No<br>
-        
-      </td>
-    </tr>
-    <tr>
-      <td><p><b>Have you outsourced your infrastructure to contractors?</b></p></td>
-      <td>
-        
-          <input type="radio" name="cont" value="1" checked onchange = "formChanged()">Yes<br>
-          <input type="radio" name="cont" value="0" checked onchange = "formChanged()">No<br>
-          <input type="radio" name="cont" value="0.5" checked onchange = "formChanged()">Partially Covered<br>
-        
-      </td>
-    </tr>
-    <tr>  
-      <td><p><b>Are you compliant to laws and/or standards like PCI, SOX, ISO?</b></p></td>
-      <td>
-        
-          <input type="radio" name="laws" value="1" checked onchange = "formChanged()">Yes<br>
-          <input type="radio" name="laws" value="0" checked onchange = "formChanged()">No<br>
-          <input type="radio" name="laws" value="1" checked onchange = "formChanged()">Dont Know<br>
-        
-      </td>
-    </tr>
-    <tr>
-      <th>Max Information Level</th>
-      <th></th>   
-      </tr>
-    <tr>
-      <td><p><b>What is the highest level of information you are planning to assess?</b></p></td>
-      <td>
-        
-          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Top Secret<br>         
-          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Secret<br>
-          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Confidential<br>
-          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Restricted<br>
-          <input type="radio" name="assess" value="0.5" checked onchange = "formChanged()">Official<br>
-          <input type="radio" name="assess" value="0" checked onchange = "formChanged()">Unclassified<br>
-      </td>
-    </tr>
-    <tr>
-      <th>Likelihood</th>
-      <th></th>
-    </tr>
-    <tr>  
-      <td><p><b>What is the number of systems you want to asses risk for?</b></p></td>
-      <td>
-          <input id="txt1" type="text" name="numsys" value = "1"><br>
-        
-      </td>
-    </tr>
-    <tr>  
-      <td><p><b>What is the total number of system you have in your environment?</b></p></td>
-      <td> 
-          <input id="txt2" type="text" name="totsys" value = "1"><br>
-          <button id="btn2" onclick="formChanged()">Submit</button>
-        
-      </td>
-    </tr>
-  </table>
-  </div> 
-
+    <div id="table-location"></div>
     <script type="text/javascript">
-    //Radio Button Stuff
-    var radios1 = document.getElementsByName("clouds");
-    radios1[1].value = 0;
-    //console.log(radios1[1].value)
-  var radios2 = document.getElementsByName("pii");
-    radios2[1].value = 0;
-  var radios3 = document.getElementsByName("cyberins");
-    radios3[2].value = 0.5;
-  var radios4 = document.getElementsByName("gov");
-    radios4[1].value = 0;
-  var radios5 = document.getElementsByName("cont");
-    radios5[2].value = 0.5;
-  var radios6 = document.getElementsByName("laws");
-    radios6[2].value = 1;
-  var radios7 = document.getElementsByName("assess");
-    radios7[5].value = 0;
-    //console.log(radios7[5].value)
-
-function formChanged(){
-  //debugger;
-
-      var radios1 = document.getElementsByName("clouds");
-    radios1[1].value = 0;
-    //console.log(radios1[1].value)
-  var radios2 = document.getElementsByName("pii");
-    radios2[1].value = 0;
-  var radios3 = document.getElementsByName("cyberins");
-    radios3[2].value = 0.5;
-  var radios4 = document.getElementsByName("gov");
-    radios4[1].value = 0;
-  var radios5 = document.getElementsByName("cont");
-    radios5[2].value = 0.5;
-  var radios6 = document.getElementsByName("laws");
-    radios6[2].value = 1;
-  var radios7 = document.getElementsByName("assess");
-    radios7[5].value = 0;
-  var txt1_v = 1;
-  var txt2_v = 1;
-
-      var radios1 = document.getElementsByName("clouds");
-      for(var i=0;i<radios1.length;i++){
-        if(radios1[i].checked){
-          //console.log(radios1[i].value);
-          var cloud_v = radios1[i].value;
-          break;  
-        } 
-        
-      }
-
-      //console.log(cloud_v);
-
-      var radios2 = document.getElementsByName("pii");
-      for(var i=0;i<radios2.length;i++){
-        if(radios2[i].checked){
-          //console.log(radios2[i].value);
-          var pii_v = +radios2[i].value;
-          break;  
-        }
-        
-      }
-
-      var radios3 = document.getElementsByName("cyberins");
-      for(var i=0;i<radios3.length;i++){
-        if(radios3[i].checked){
-          //console.log(radios2[i].value);
-          var cyberins_v = +radios3[i].value;
-          break;  
-        }
-        
-      }
-
-      var radios4 = document.getElementsByName("gov");
-      for(var i=0;i<radios4.length;i++){
-        if(radios4[i].checked){
-          //console.log(radios2[i].value);
-          var gov_v = +radios4[i].value;
-          break;  
-        }
-        
-      }
-
-      var radios5 = document.getElementsByName("cont");
-      for(var i=0;i<radios5.length;i++){
-        if(radios5[i].checked){
-          //console.log(radios2[i].value);
-          var cont_v = +radios5[i].value;
-          break;  
-        }
-        
-      }
-
-      var radios6 = document.getElementsByName("laws");
-      for(var i=0;i<radios6.length;i++){
-        if(radios6[i].checked){
-          //console.log(radios2[i].value);
-          var laws_v = +radios6[i].value;
-          break;  
-        }
-        
-      }
-
-      var radios7 = document.getElementsByName("assess");
-      for(var i=0;i<radios7.length;i++){
-        if(radios7[i].checked){
-         // console.log(radios7[i].value);
-         var assess_v = +radios7[i].value;
-          break;  
-        }
-        
-      }
-
-      var text1 = document.getElementById("txt1").value;
-        //console.log(text1);
-        var txt1_v = +text1;
-      
-
-      var text2 = document.getElementById("txt2").value;
-        //console.log(text2);
-        var txt2_v = +text2;
-        //console.log(txt2_v);
-
-        var avg_aef = ((cloud_v*1)+(pii_v*1)+(cyberins_v*1)+(gov_v*1)+(cont_v*1)+(laws_v*1))/6;
-        //console.log(avg_aef);
-
-        var mil = assess_v;
-        //console.log(mil);
-        
-        var lkl = (txt1_v*1)/(txt2_v*1);
-        //console.log(lkl);
-
-        var new_rs = avg_aef * mil * lkl;
-        //console.log(new_rs);
-
-        for (i=0;i<datasetBarChart.length;i++){
-          //console.log(datasetBarChart[0].measure);
-          datasetBarChart[i].measure = d3.round((new_rs * datasetBarChart[i].score),2);
-          console.log(datasetBarChart[0].measure);
-
-
-        }
-
-        
-      //Redraw D#
-
-  }
-      //Radio Button Stuff Ends
+    
 /*
 ################ FORMATS ##################
 -------------------------------------------
@@ -578,8 +306,6 @@ function dsPieChart(){
         ]
         ;
 */   
-
-  d3.select("svg").remove();
 
   var dataset = [
       {category: "AIXAPAR", measure: 0.032},
@@ -768,14 +494,11 @@ function dsPieChart(){
         updateBarChart(d.data.category, color(i));
         updateLineChart(d.data.category, color(i));
         updateScatter(d.data.category);
-
        
   }
 }
 
 dsPieChart();
-
-
 
 /*
 ############# SCATTER PLOT #############
@@ -1592,14 +1315,12 @@ var datasetBarChart1 = [
 
 */
 
-
-
 var datasetBarChart = [
   {
     "group": "DEBIAN",
     "category": "CVE-2013-7448",
     "summary": "Directory traversal vulnerability in wiki.c in didiwiki allows remote attackers to read arbitrary files via the page parameter to api/page/get.",
-    "score": 5, 
+    "score": 5,
     "date": "3/7/16",
     "measure": 2.5,
     "cvss_id": 1
