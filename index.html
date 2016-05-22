@@ -7,59 +7,90 @@
    <!--<script type="text/javascript" src="d3/d3.v2.js"></script>-->
     <script src="http://d3js.org/d3.v2.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-	<!-- Note: I made good use of the sample code provided by the D3JS community and extended it to fit my needs to create this simple dashboard -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+  <!-- Note: I made good use of the sample code provided by the D3JS community and extended it to fit my needs to create this simple dashboard -->
     <style type="text/css">
+
+  
 
 #table-location {
     position: absolute;
-    top: 490px;
+    top: 680px;
     width: 100%;
     float: left;
     border: 1px grey;
     text-align: center;
     table-layout: fixed;
+    overflow: scroll;
+    height: 500px;
+    padding-left: 70px;
+    padding-right: 55px;
+
 }
 
 th, tr {
     text-align: center;
     border: 1px solid black;
 
-
 }
+
 td {
   width: 50px;
 }
 
 #pieChart {    
-	position:absolute;
-	top:100px;
-	left:10px;
-	width:400px;
-	height: 350px; 
+  position:absolute;
+  top:90px;
+  left:510px;
+  width:400px;
+  height: 350px; 
+  padding: 10px;
 }
 
 
 
 #lineChart {    
-	position:absolute;
-	top:100px;
-	left:410px;
-	height: 150px;
+  position:absolute;
+  top:375px;
+  left:20px;
+  height: 150px;
+  padding-left: 20px;
 }
 
 #barChart {
-	position:absolute;
-	top:235px;
-	left:450px;
-	height: 250px;
+  position:absolute;
+  top:480px;
+  left:20px;
+  height: 250px;
+  width: 500px;
+  padding-left: 50px;
+}
+
+#scatterChart {
+  position:absolute;
+  top:70px;
+  left:825px;
+  height: 250px;
+  padding-right: 50px;
+}
+
+#questiontable {
+  position:absolute;
+  top:100px;
+  left:20px;
+  height: 250px;
+  width: 425px;
+  overflow: scroll;
+  padding-left: 50px;
+  font-size: 10px;
 }
 
 .slice {
    font-size: 12pt;
    font-family: Verdana;
    fill: white; //svg specific - instead of color
-   font-weight: bold;	
-  		} 
+   font-weight: bold; 
+      } 
 
 /*for line chart*/
 .axis path, .axis line {
@@ -71,15 +102,15 @@ td {
 .line {
   fill: none;
   /*stroke: steelblue;*/
-  stroke-width: 3px;
+  stroke-width: 1px;
 }
 
 .dot {
   /*fill: white;*/
   /*stroke: steelblue;*/
-  stroke-width: 1.5px;
+  stroke-width: 1px;
   }
-				
+        
 
 .axis text {
     font-family: Verdana;
@@ -87,10 +118,10 @@ td {
 }
 
 .title {
-	 font-family: Verdana;
-    font-size: 15px;
-    font-weight: bold;	
-		
+   font-family: Verdana;
+    font-size: 10px;
+    font-weight: bold;  
+    
 }
 
 .xAxis {
@@ -106,27 +137,27 @@ td {
 }
 
 #lineChartTitle1 {
-	font-family: Verdana;
-	font-size  : 14px;
-	fill       : black;
-	font-weight: bold;
-	text-anchor: middle;
+  font-family: Verdana;
+  font-size  : 14px;
+  fill       : black;
+  font-weight: bold;
+  text-anchor: middle;
 }
 
 #lineChartTitle2 {
-	font-family: Verdana;
-	font-size  : 72px;
-	fill       : grey;
-	text-anchor: middle;
-	font-weight: bold;
-	/*font-style: italic;*/
+  font-family: Verdana;
+  font-size  : 62px;
+  fill       : black;
+  text-anchor: middle;
+  font-weight: bold;
+  /*font-style: italic;*/
 }
 
 div.tooltip { 
     position: absolute;     
     text-align: left;     
     width: 500px;          
-    height: 110px;         
+    height: 150px;         
     padding: 5px;       
     font: 12px sans-serif;    
     background: lightsteelblue; 
@@ -138,7 +169,7 @@ div.tooltip {
 div.tooltip2 { 
     position: absolute;     
     text-align: left;     
-    width: 150px;          
+    width: 160px;          
     height: 40px;         
     padding: 5px;       
     font: 12px sans-serif;    
@@ -148,15 +179,29 @@ div.tooltip2 {
     pointer-events: none;     
 }
 
+div.tooltip3 { 
+    position: absolute;     
+    text-align: left;     
+    width: 50px;          
+    height: 10px;         
+    padding: 5px;       
+    font: 12px sans-serif;    
+    background: lightsteelblue; 
+    border: 0px;    
+    border-radius: 8px;     
+    pointer-events: none;     
+}
+
 .dropdown {
-  top: 460px;
+  top: 265px;
   float: left;
-  margin-left: 10px;
+  padding-left: 70px;
 
 }
 
 #logo {
-  width: 800px;
+  width: 790px;
+  height: 100px;
 }
 
 #image {
@@ -164,10 +209,61 @@ div.tooltip2 {
   height: 100px;
   float: right;
 }
-				 
+
+.scatterxaxis path,line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.scatterxaxis text {
+  font-size: 9px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.scatteryaxis path,line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+
+}
+
+.scatteryaxis text {
+  font-size: 9px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+table#t01 {
+        width:100%;
+    }
+    table#t01, table#t01 th, table#t01 td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        
+    }
+    table#t01 th, table#t01 td {
+        padding: 5px;
+        text-align: left;
+    }
+    table#t01 tr:nth-child(even) {
+        background-color: #eee;
+    }
+    table#t01 tr:nth-child(odd) {
+       background-color:#fff;
+    }
+    table#t01 th  {
+        background-color: black;
+        color: white;
+    }
+         
     </style>
   </head>
+
   <body>
+ 
+
     <div id="logo">
     <img id ="image" src="s3.png">
     </div>
@@ -175,8 +271,12 @@ div.tooltip2 {
     <div id="pieChart"></div>
     <div id="barChart"></div>  
     <div id="lineChart"></div>
-
-
+    <div id="scatterChart"></div>
+    <div id="table-location"></div>
+   <!-- <iframe src="radio_form.html" id="questiontable">
+      
+    </iframe>
+-->
     
     <div class="dropdown" align = "center">
       <select name="one" class="dropdown-select">
@@ -207,25 +307,269 @@ div.tooltip2 {
 
   
 
-    <div id="table-location"></div>
+ <div id="questiontable">   
+ <table id="t01">
+    <tr>
+        <th>Average External Factors</th>
+        <th></th>   
+      </tr>
+    <tr>
+      <td><p><b>Is any of your software deployed in clouds?</b></p></td>
+      <td>
+        
+          <input type="radio" name="clouds" value="1" checked onchange = "formChanged()">Yes<br>          
+          <input type="radio" name="clouds" value="0" checked onchange = "formChanged()">No<br>
+        
+      </td>
+    </tr>
+    <tr>
+      <td><p><b>Does your customers PII data reside with you?</b></p></td>
+      <td>
+        
+          <input type="radio" name="pii" value="1" checked onchange = "formChanged()">Yes<br>
+          <input type="radio" name="pii" value="0" checked onchange = "formChanged()">No<br>
+        
+      </td>
+    </tr>
+    <tr>  
+      <td><p><b>Do you have a cyber insurance which covers you against threats?</b></p></td>
+      <td>
+        
+          <input type="radio" name="cyberins" value="1" checked onchange = "formChanged()">Yes<br>
+          <input type="radio" name="cyberins" value="0" checked onchange = "formChanged()">No<br>
+          <input type="radio" name="cyberins" value="0.5" checked onchange = "formChanged()">Partially Covered<br>
+        
+      </td>
+    </tr>
+    <tr>  
+      <td><p><b>Do you have work related to government employees or research?</b></p></td>
+      <td>
+        
+          <input type="radio" name="gov" value="1" checked onchange = "formChanged()">Yes<br>
+          <input type="radio" name="gov" value="0" checked onchange = "formChanged()">No<br>
+        
+      </td>
+    </tr>
+    <tr>
+      <td><p><b>Have you outsourced your infrastructure to contractors?</b></p></td>
+      <td>
+        
+          <input type="radio" name="cont" value="1" checked onchange = "formChanged()">Yes<br>
+          <input type="radio" name="cont" value="0" checked onchange = "formChanged()">No<br>
+          <input type="radio" name="cont" value="0.5" checked onchange = "formChanged()">Partially Covered<br>
+        
+      </td>
+    </tr>
+    <tr>  
+      <td><p><b>Are you compliant to laws and/or standards like PCI, SOX, ISO?</b></p></td>
+      <td>
+        
+          <input type="radio" name="laws" value="1" checked onchange = "formChanged()">Yes<br>
+          <input type="radio" name="laws" value="0" checked onchange = "formChanged()">No<br>
+          <input type="radio" name="laws" value="1" checked onchange = "formChanged()">Dont Know<br>
+        
+      </td>
+    </tr>
+    <tr>
+      <th>Max Information Level</th>
+      <th></th>   
+      </tr>
+    <tr>
+      <td><p><b>What is the highest level of information you are planning to assess?</b></p></td>
+      <td>
+        
+          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Top Secret<br>         
+          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Secret<br>
+          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Confidential<br>
+          <input type="radio" name="assess" value="1" checked onchange = "formChanged()">Restricted<br>
+          <input type="radio" name="assess" value="0.5" checked onchange = "formChanged()">Official<br>
+          <input type="radio" name="assess" value="0" checked onchange = "formChanged()">Unclassified<br>
+      </td>
+    </tr>
+    <tr>
+      <th>Likelihood</th>
+      <th></th>
+    </tr>
+    <tr>  
+      <td><p><b>What is the number of systems you want to asses risk for?</b></p></td>
+      <td>
+          <input id="txt1" type="text" name="numsys" value = "1"><br>
+        
+      </td>
+    </tr>
+    <tr>  
+      <td><p><b>What is the total number of system you have in your environment?</b></p></td>
+      <td> 
+          <input id="txt2" type="text" name="totsys" value = "1"><br>
+          <button id="btn2" onclick="formChanged()">Submit</button>
+        
+      </td>
+    </tr>
+  </table>
+  </div> 
+
     <script type="text/javascript">
-    
+    //Radio Button Stuff
+    var radios1 = document.getElementsByName("clouds");
+    radios1[1].value = 0;
+    //console.log(radios1[1].value)
+  var radios2 = document.getElementsByName("pii");
+    radios2[1].value = 0;
+  var radios3 = document.getElementsByName("cyberins");
+    radios3[2].value = 0.5;
+  var radios4 = document.getElementsByName("gov");
+    radios4[1].value = 0;
+  var radios5 = document.getElementsByName("cont");
+    radios5[2].value = 0.5;
+  var radios6 = document.getElementsByName("laws");
+    radios6[2].value = 1;
+  var radios7 = document.getElementsByName("assess");
+    radios7[5].value = 0;
+    //console.log(radios7[5].value)
+
+function formChanged(){
+  //debugger;
+
+      var radios1 = document.getElementsByName("clouds");
+    radios1[1].value = 0;
+    //console.log(radios1[1].value)
+  var radios2 = document.getElementsByName("pii");
+    radios2[1].value = 0;
+  var radios3 = document.getElementsByName("cyberins");
+    radios3[2].value = 0.5;
+  var radios4 = document.getElementsByName("gov");
+    radios4[1].value = 0;
+  var radios5 = document.getElementsByName("cont");
+    radios5[2].value = 0.5;
+  var radios6 = document.getElementsByName("laws");
+    radios6[2].value = 1;
+  var radios7 = document.getElementsByName("assess");
+    radios7[5].value = 0;
+  var txt1_v = 1;
+  var txt2_v = 1;
+
+      var radios1 = document.getElementsByName("clouds");
+      for(var i=0;i<radios1.length;i++){
+        if(radios1[i].checked){
+          //console.log(radios1[i].value);
+          var cloud_v = radios1[i].value;
+          break;  
+        } 
+        
+      }
+
+      //console.log(cloud_v);
+
+      var radios2 = document.getElementsByName("pii");
+      for(var i=0;i<radios2.length;i++){
+        if(radios2[i].checked){
+          //console.log(radios2[i].value);
+          var pii_v = +radios2[i].value;
+          break;  
+        }
+        
+      }
+
+      var radios3 = document.getElementsByName("cyberins");
+      for(var i=0;i<radios3.length;i++){
+        if(radios3[i].checked){
+          //console.log(radios2[i].value);
+          var cyberins_v = +radios3[i].value;
+          break;  
+        }
+        
+      }
+
+      var radios4 = document.getElementsByName("gov");
+      for(var i=0;i<radios4.length;i++){
+        if(radios4[i].checked){
+          //console.log(radios2[i].value);
+          var gov_v = +radios4[i].value;
+          break;  
+        }
+        
+      }
+
+      var radios5 = document.getElementsByName("cont");
+      for(var i=0;i<radios5.length;i++){
+        if(radios5[i].checked){
+          //console.log(radios2[i].value);
+          var cont_v = +radios5[i].value;
+          break;  
+        }
+        
+      }
+
+      var radios6 = document.getElementsByName("laws");
+      for(var i=0;i<radios6.length;i++){
+        if(radios6[i].checked){
+          //console.log(radios2[i].value);
+          var laws_v = +radios6[i].value;
+          break;  
+        }
+        
+      }
+
+      var radios7 = document.getElementsByName("assess");
+      for(var i=0;i<radios7.length;i++){
+        if(radios7[i].checked){
+         // console.log(radios7[i].value);
+         var assess_v = +radios7[i].value;
+          break;  
+        }
+        
+      }
+
+      var text1 = document.getElementById("txt1").value;
+        //console.log(text1);
+        var txt1_v = +text1;
+      
+
+      var text2 = document.getElementById("txt2").value;
+        //console.log(text2);
+        var txt2_v = +text2;
+        //console.log(txt2_v);
+
+        var avg_aef = ((cloud_v*1)+(pii_v*1)+(cyberins_v*1)+(gov_v*1)+(cont_v*1)+(laws_v*1))/6;
+        //console.log(avg_aef);
+
+        var mil = assess_v;
+        //console.log(mil);
+        
+        var lkl = (txt1_v*1)/(txt2_v*1);
+        //console.log(lkl);
+
+        var new_rs = avg_aef * mil * lkl;
+        //console.log(new_rs);
+
+        for (i=0;i<datasetBarChart.length;i++){
+          //console.log(datasetBarChart[0].measure);
+          datasetBarChart[i].measure = d3.round((new_rs * datasetBarChart[i].score),2);
+          console.log(datasetBarChart[0].measure);
+          
+          }
+
+      
+      //Redraw D#
+
+  }
+      //Radio Button Stuff Ends
 /*
 ################ FORMATS ##################
 -------------------------------------------
 */
 
 
-var 	formatAsPercentage = d3.format("%"),
-		formatAsPercentage1Dec = d3.format(".1%"),
-		formatAsInteger = d3.format(","),
-		fsec = d3.time.format("%S s"),
-		fmin = d3.time.format("%M m"),
-		fhou = d3.time.format("%H h"),
-		fwee = d3.time.format("%a"),
-		fdat = d3.time.format("%d d"),
-		fmon = d3.time.format("%b")
-		;
+var   formatAsPercentage = d3.format("%"),
+    formatAsPercentage1Dec = d3.format(".1%"),
+    formatAsInteger = d3.format(","),
+    fsec = d3.time.format("%S s"),
+    fmin = d3.time.format("%M m"),
+    fhou = d3.time.format("%H h"),
+    fwee = d3.time.format("%a"),
+    fdat = d3.time.format("%d d"),
+    fmon = d3.time.format("%b")
+    ;
 
 /*
 ############# PIE CHART ###################
@@ -237,73 +581,75 @@ var 	formatAsPercentage = d3.format("%"),
 function dsPieChart(){
 
 /*
-	var dataset = [
-			{category: "Sam", measure: 0.30},
-	      {category: "Peter", measure: 0.25},
-	      {category: "John", measure: 0.15},
-	      {category: "Rick", measure: 0.05},
-	      {category: "Lenny", measure: 0.18},
-	      {category: "Paul", measure:0.04},
-	      {category: "Steve", measure: 0.03}
-	      ]
-	      ;
-*/	 
+  var dataset = [
+      {category: "Sam", measure: 0.30},
+        {category: "Peter", measure: 0.25},
+        {category: "John", measure: 0.15},
+        {category: "Rick", measure: 0.05},
+        {category: "Lenny", measure: 0.18},
+        {category: "Paul", measure:0.04},
+        {category: "Steve", measure: 0.03}
+        ]
+        ;
+*/   
 
-	var dataset = [
-			{category: "AIXAPAR", measure: 0.032},
-	      {category: "APPLE", measure: 0.01},
-	      {category: "BID", measure: 0.063},
-	      {category: "BUGTRAQ", measure: 0.031},
-	      {category: "CERT-VN", measure: 0.021},
-	      {category: "CISCO", measure: 0.196},
-	      {category: "CONFIRM", measure: 0.224},
-	      {category: "DEBIAN", measure: 0.014},
-	      {category: "FEDORA", measure: 0.017},
-	      {category: "FULLDISC", measure: 0.004},
-	      {category: "GENTOO", measure: 0.007},
-	      {category: "HP", measure: 0.013},
-	      {category: "JVN", measure: 0.03},
-	      {category: "MISC", measure: 0.115},
-	      {category: "MLIST", measure: 0.016},
-	      {category: "MS", measure: 0.048},
-	      {category: "REDHAT", measure: 0.012},
-	      {category: "SECTRACK", measure: 0.026},
-	      {category: "SECUNIA", measure: 0.004},
-	      {category: "SUSE", measure: 0.116},
-	      {category: "XF", measure: 0.001}
-	      ]
-	      ;     
+  d3.select("svg").remove();
 
-	var 	width = 325,
-		   height = 325,
-		   outerRadius = Math.min(width, height) / 2,
-		   innerRadius = outerRadius * .999,   
-		   // for animation
-		   innerRadiusFinal = outerRadius * .5,
-		   innerRadiusFinal3 = outerRadius* .45,
-		   color = d3.scale.category20()    //builtin range of colors
-		   ;
+  var dataset = [
+      {category: "AIXAPAR", measure: 0.032},
+        {category: "APPLE", measure: 0.01},
+        {category: "BID", measure: 0.063},
+        {category: "BUGTRAQ", measure: 0.031},
+        {category: "CERT-VN", measure: 0.021},
+        {category: "CISCO", measure: 0.196},
+        {category: "CONFIRM", measure: 0.224},
+        {category: "DEBIAN", measure: 0.014},
+        {category: "FEDORA", measure: 0.017},
+        {category: "FULLDISC", measure: 0.004},
+        {category: "GENTOO", measure: 0.007},
+        {category: "HP", measure: 0.013},
+        {category: "JVN", measure: 0.03},
+        {category: "MISC", measure: 0.115},
+        {category: "MLIST", measure: 0.016},
+        {category: "MS", measure: 0.048},
+        {category: "REDHAT", measure: 0.012},
+        {category: "SECTRACK", measure: 0.026},
+        {category: "SECUNIA", measure: 0.004},
+        {category: "SUSE", measure: 0.116},
+        {category: "XF", measure: 0.001}
+        ]
+        ;     
+
+  var   width = 250,
+       height = 250,
+       outerRadius = Math.min(width, height) / 2,
+       innerRadius = outerRadius * .999,   
+       // for animation
+       innerRadiusFinal = outerRadius * .5,
+       innerRadiusFinal3 = outerRadius* .45,
+       color = d3.scale.category20()    //builtin range of colors
+       ;
 
 
   var div = d3.select("body").append("div") 
     .attr("class", "tooltip2")       
     .style("opacity", 0);
-	    
-	var vis = d3.select("#pieChart")
-	     .append("svg:svg")              //create the SVG element inside the <body>
-	     .data([dataset])                   //associate our data with the document
-	         .attr("width", width)           //set the width and height of our visualization (these will be attributes of the <svg> tag
-	         .attr("height", height)
-	     		 .append("svg:g")                //make a group to hold our pie chart
-	         .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")    //move the center of the pie chart from 0, 0 to radius, radius
-				;
-				
+      
+  var vis = d3.select("#pieChart")
+       .append("svg:svg")              //create the SVG element inside the <body>
+       .data([dataset])                   //associate our data with the document
+           .attr("width", width)           //set the width and height of our visualization (these will be attributes of the <svg> tag
+           .attr("height", height)
+           .append("svg:g")                //make a group to hold our pie chart
+           .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")")    //move the center of the pie chart from 0, 0 to radius, radius
+        ;
+        
    var arc = d3.svg.arc()              //this will create <path> elements for us using arc data
-        	.outerRadius(outerRadius).innerRadius(innerRadius);
+          .outerRadius(outerRadius).innerRadius(innerRadius);
    
    // for animation
    var arcFinal = d3.svg.arc().innerRadius(innerRadiusFinal).outerRadius(outerRadius);
-	 var arcFinal3 = d3.svg.arc().innerRadius(innerRadiusFinal3).outerRadius(outerRadius);
+   var arcFinal3 = d3.svg.arc().innerRadius(innerRadiusFinal3).outerRadius(outerRadius);
 
    var pie = d3.layout.pie()           //this will create arc data for us given a list of values
         .value(function(d) { return d.measure; });    //we must tell it out to access the value of each element in our data array
@@ -321,7 +667,7 @@ function dsPieChart(){
             div.transition()    
                 .duration(200)    
                 .style("opacity", .9);    
-            div .html("Technology: " + d.data.category + "<br/>" + "Percent: " + d3.round(d.data.measure*100,2) + "%")  
+            div .html("<b>Technology :</b> " + d.data.category + "<br/>" + "<b>Percent :</b> " + d3.round(d.data.measure*100,2) + "%")  
                 .style("left", (d3.event.pageX) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px");
 
@@ -335,7 +681,7 @@ function dsPieChart(){
 
            
                })
-    				.on("mouseout", function(d){
+            .on("mouseout", function(d){
               d3.select(this).select("path").transition()
         .duration(750)
               //.attr("stroke","blue")
@@ -343,60 +689,61 @@ function dsPieChart(){
               .attr("d", arcFinal)
               ;
 
-     div.transition()    
+        div.transition()    
                .duration(500)    
                .style("opacity", 0); 
             })
-    				.on("click", up)
-    				;
-    				
+            .on("click", up)
+            ;
+            
         arcs.append("svg:path")
                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
                .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
-					.append("svg:title") //mouseover title showing the figures
-				   //.text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });			
+          .append("svg:title") //mouseover title showing the figures
+           //.text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });      
 
         d3.selectAll("g.slice").selectAll("path").transition()
-			    .duration(750)
-			    .delay(10)
-			    .attr("d", arcFinal )
-			    ;
-	
-	  // Add a label to the larger arcs, translated to the arc centroid and rotated.
-	  // source: http://bl.ocks.org/1305337#index.html
-	  arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; })
-	  		.append("svg:text")
-	      .attr("dy", ".35em")
-	      .attr("text-anchor", "middle")
-	      .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
-	      //.text(function(d) { return formatAsPercentage(d.value); })
-	      .text(function(d) { return d.data.category; })
-	      ;
-	   
-	   // Computes the label angle of an arc, converting from radians to degrees.
-		function angle(d) {
-		    var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
-		    return a > 90 ? a - 180 : a;
-		}
-		    
-		
-		// Pie chart title			
-		vis.append("svg:text")
-	     	.attr("dy", ".35em")
-	      .attr("text-anchor", "middle")
-	      .text("Technology")
-	      .attr("class","title")
-	      ;		    
+          .duration(750)
+          .delay(10)
+          .attr("d", arcFinal )
+          ;
+  
+    // Add a label to the larger arcs, translated to the arc centroid and rotated.
+    // source: http://bl.ocks.org/1305337#index.html
+    arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; })
+        .append("svg:text")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
+        //.text(function(d) { return formatAsPercentage(d.value); })
+        .text(function(d) { return d.data.category; })
+        .attr("font-size","8px")
+        ;
+     
+     // Computes the label angle of an arc, converting from radians to degrees.
+    function angle(d) {
+        var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
+        return a > 90 ? a - 180 : a;
+    }
+        
+    
+    // Pie chart title      
+    vis.append("svg:text")
+        .attr("dy", ".35em")
+        .attr("text-anchor", "middle")
+        .text("Technology")
+        .attr("class","title")
+        ;       
 
 
-		/*
-	function mouseover() {
-	  d3.select(this).select("path").transition()
-	      .duration(750)
-	        		//.attr("stroke","red")
-	        		//.attr("stroke-width", 1.5)
-	        		.attr("d", arcFinal3)
-	        		;
+    /*
+  function mouseover() {
+    d3.select(this).select("path").transition()
+        .duration(750)
+              //.attr("stroke","red")
+              //.attr("stroke-width", 1.5)
+              .attr("d", arcFinal3)
+              ;
 
 
             div.transition()    
@@ -409,37 +756,801 @@ function dsPieChart(){
          
            
         
-	}
-	
-	function mouseout() {
-	  d3.select(this).select("path").transition()
-	      .duration(750)
-	        		//.attr("stroke","blue")
-	        		//.attr("stroke-width", 1.5)
-	        		.attr("d", arcFinal)
-	        		;
+  }
+  
+  function mouseout() {
+    d3.select(this).select("path").transition()
+        .duration(750)
+              //.attr("stroke","blue")
+              //.attr("stroke-width", 1.5)
+              .attr("d", arcFinal)
+              ;
 
      div.transition()    
                .duration(500)    
                .style("opacity", 0); 
-	}
+  }
 
   */
-	
-	function up(d, i) {
-	       //console.log(dataset[i].category);
+  
+  function up(d, i) {
+         //console.log(dataset[i].category);
          //console.log(d.data.category);
          console.log(i);
          console.log(color(i))
-				/* update bar chart when user selects piece of the pie chart */
-				updateBarChart(dataset[i].category);
-				updateBarChart(d.data.category, color(i));
-				updateLineChart(d.data.category, color(i));
-			 
-	}
+        /* update bar chart when user selects piece of the pie chart */
+        updateBarChart(dataset[i].category);
+        updateBarChart(d.data.category, color(i));
+        updateLineChart(d.data.category, color(i));
+        updateScatter(d.data.category);
+
+       
+  }
 }
 
 dsPieChart();
+
+
+
+/*
+############# SCATTER PLOT #############
+----------------------------------------
+*/
+
+var color = d3.scale.category20();
+          var categories = ["AIXAPAR","APPLE","BID","BUGTRAQ","CERT-VN","CISCO","CONFIRM","DEBIAN","FEDORA","FULLDISC","GENTOO", 
+          "HP","JVN","MISC","MLIST","MS","REDHAT","SECTRACK","SECUNIA","SUSE","XF"]; 
+
+          var datasetscatter = [
+                  [ 1, 0, "January" ],
+                  [ 2, 12, "February" ],
+                  [ 3, 7, "March" ],
+                  [ 4, 15, "April" ],
+                  [ 5, 21, "May" ],
+                  [ 6, 32, "June" ],
+                  [ 7, 3, "July" ],
+                  [ 8, 0, "August" ],
+                  [ 9, 46, "September" ],
+                  [ 10, 26, "October" ],
+                  [ 11, 22, "November" ],
+                  [ 12, 0, "December" ]
+              ];
+
+
+          var div = d3.select("body").append("div") 
+            .attr("class", "tooltip3")       
+            .style("opacity", 0);
+        
+
+            
+              //console.log(datasetscatter);
+
+          //}
+         //Dynamic, random datasetscatter
+    /* var datasetscatter = [];
+     var numDataPoints = 20;
+     var xRange = Math.random() * 1000;
+     var yRange = Math.random() * 1000;
+     for (var i = 0; i < numDataPoints; i++) {
+         var newNumber1 = Math.floor(Math.random() * xRange);
+         var newNumber2 = Math.floor(Math.random() * yRange);
+         datasetscatter.push([newNumber1, newNumber2]);
+     }*/
+
+
+
+     //Declare the width and height
+     var width = 450;
+     var height = 300;
+     var padding = 30;
+    
+
+     //Declare scales
+
+      var xScale = d3.scale.linear()
+             .domain([0,d3.max(datasetscatter, function(d){
+              //console.log(d);
+              return d[0];})])
+             .range([padding, width-padding*2])
+             .nice()
+             .clamp(true);
+
+      //console.log(Math.max(d[0][0], d[1][0]));
+
+      var yScale = d3.scale.linear()
+             .domain([0,d3.max(datasetscatter, function(d){
+              //.domain([0,50])
+              console.log(d[1]);
+              return d[1];})])
+             //.domain(0,50)
+             .rangeRound([height-padding,padding])
+             //.rangeRound([height, d3.max(datasetscatter, function(d){return d[1]})])
+             .nice()
+             .clamp(true);
+
+     
+
+      var rScale = d3.scale.linear()
+             .domain([0,d3.max(datasetscatter, function(d){return 5;})])
+             .rangeRound([45,60])
+             .nice()
+             .clamp(true);
+
+      
+
+
+     //var formatAsPercentage = d3.format(".1%");
+     var formatAsPercentage = d3.format(".1");
+
+
+     
+
+
+
+     //Create svg element
+     var svg = d3.select("#scatterChart")
+           .append("svg")
+           //.attr("viewBox", "0 0 " + width + " " + height);
+           .attr("width",width)
+           .attr("height",height);
+
+
+     svg.append("clipPath")
+      .attr("id","chart-area")
+      .append("rect")
+      .attr("x",padding)
+      .attr("y",padding)
+      .attr("width",width-padding)
+      .attr("height",height-padding);
+
+
+    
+
+     var circles = svg.append("g")
+              .attr("id","circles")
+              //.attr("clip-path","url(#chart-area")
+              .selectAll("circle")
+              .data(datasetscatter)
+              .enter()
+              .append("circle")
+              .on("mouseover", function(d){
+                
+                div.transition()    
+                .duration(200)    
+                .style("opacity", 0.9)
+                .style("width","150px")
+                .style("height","40px")    
+                div.html("<b>Number of Risks:</b> " + d[1] + "<br/>" + "<b>Month :</b> " + d[2])  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");
+
+
+              })
+              .on("mouseout", function(d){
+                   div.transition()    
+               .duration(500)    
+               .style("opacity", 0);
+              });
+
+
+     circles.attr("cx",function(d){
+        //console.log(d);
+        //console.log(d[0]);
+        //console.log(d[1]);
+        return xScale(d[0]); 
+
+
+        //return i*(width/50+1); bar width plus 1 for padding otherwise all the bars stick together since we took x as their width
+        })
+          .attr("cy",function(d){
+            console.log(yScale(d[1]));
+          //return d[1];
+          return yScale(d[1]);
+
+        })
+          .attr("r",function(d){
+          return Math.sqrt(rScale(d[1]));
+        })
+          .attr("fill",function(d){
+            var categories = ["AIXAPAR","APPLE","BID","BUGTRAQ","CERT-VN","CISCO","CONFIRM","DEBIAN","FEDORA","FULLDISC","GENTOO", "HP","JVN","MISC","MLIST","MS","REDHAT","SECTRACK","SECUNIA","SUSE","XF"];
+            for(j=0;j<categories.length;j++){
+              if("MS" == categories[j]){
+                console.log(j);
+                return color.range()[j];
+              }
+              
+            }
+          //return "rgba(0,"+(d.AIXAPAR*2)+",0,0.6)";
+        })
+          .attr("stroke","")
+          .attr("stroke-width","0.5px");
+
+
+/*          .attr("title",function(d){
+               return "("+d.Date+","+d.MS+")";
+             });
+*/
+
+     //Create rectangles
+     //svg.selectAll("circle")
+      
+      
+
+     /*svg.selectAll("text")
+      .data(datasetscatter)
+      .enter()
+      .append("text")
+      .text(function(d){
+        return "("0]+","1]+")";
+      })
+      .attr("x",function(d,i){
+        return xScale(d[0]);
+      })
+      .attr("y",function(d){
+        return yScale(d[1]+3);
+      })
+      .attr("fill","black")
+      .attr("font-size","6px")
+      .attr("font-family","sans-serif")
+      .attr("text-anchor","middle");*/
+
+    
+
+     var xAxis = d3.svg.axis()
+               .scale(xScale)
+               .orient("bottom")
+               .ticks(12)
+               .tickFormat(formatAsPercentage);
+
+     var yAxis = d3.svg.axis()
+               .scale(yScale)
+               .orient("left")
+               //.text("Hello")
+               .ticks(10)
+               .tickFormat(formatAsPercentage);
+
+
+     svg.append("g")
+      .attr("class","scatterxaxis")
+      .attr("transform","translate(0,"+(height-padding)+")")
+        .call(xAxis);
+
+
+     svg.append("g")
+      .attr("class","scatteryaxis")
+      .attr("transform","translate("+padding+",0)")
+        .call(yAxis);
+
+     // now add titles to the axes
+        svg.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+            .text("Number of Risks")
+            .attr("font-weight", "bold")
+            .attr("font-size","8px");
+
+
+        svg.append("text")
+          .attr("font-size","8px")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (width/2) +","+(height-(padding/5))+")")  // centre below axis
+            .text("Month")
+            .attr("font-weight","bold");
+
+
+
+
+         function updateScatter(group){
+
+            var aixapar = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,4, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,3, "May" ],
+                  [ 6,4, "June" ],
+                  [ 7,2, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,4, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,2, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+          var apple = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,6, "March" ],
+                  [ 4,2, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,1, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+
+            var bid = [
+                  [ 1,1, "January" ],
+                  [ 2,2, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,25, "August" ],
+                  [ 9,17, "September" ],
+                  [ 10,13, "October" ],
+                  [ 11,1, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+             var bugtraq = [
+                  [ 1,2, "January" ],
+                  [ 2,4, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,1, "April" ],
+                  [ 5,1, "May" ],
+                  [ 6,7, "June" ],
+                  [ 7,5, "July" ],
+                  [ 8,6, "August" ],
+                  [ 9,3, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+            var certvn = [
+                  [ 1,1, "January" ],
+                  [ 2,5, "February" ],
+                  [ 3,4, "March" ],
+                  [ 4,6, "April" ],
+                  [ 5,1, "May" ],
+                  [ 6,1, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+             var cisco = [
+                  [ 1, 0, "January" ],
+                  [ 2, 12, "February" ],
+                  [ 3, 7, "March" ],
+                  [ 4, 15, "April" ],
+                  [ 5, 21, "May" ],
+                  [ 6, 32, "June" ],
+                  [ 7, 3, "July" ],
+                  [ 8, 0, "August" ],
+                  [ 9, 46, "September" ],
+                  [ 10, 26, "October" ],
+                  [ 11, 22, "November" ],
+                  [ 12, 0, "December" ]
+              ];
+
+             var confirm = [
+                  [ 1,10, "January" ],
+                  [ 2,8, "February" ],
+                  [ 3,20, "March" ],
+                  [ 4,56, "April" ],
+                  [ 5,13, "May" ],
+                  [ 6,16, "June" ],
+                  [ 7,12, "July" ],
+                  [ 8,2, "August" ],
+                  [ 9,2, "September" ],
+                  [ 10,8, "October" ],
+                  [ 11,11, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+             var debian = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,2, "March" ],
+                  [ 4,2, "April" ],
+                  [ 5,1, "May" ],
+                  [ 6,1, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,1, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,2, "December" ]
+              ];
+
+             var fedora = [
+                  [ 1,6, "January" ],
+                  [ 2,1, "February" ],
+                  [ 3,4, "March" ],
+                  [ 4,2, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,1, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,1, "September" ],
+                  [ 10,1, "October" ],
+                  [ 11,1, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+
+              var fulldisc = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,1, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,1, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var gentoo = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,7, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var hp = [
+                  [ 1,10, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var jvn = [
+                  [ 1,1, "January" ],
+                  [ 2,6, "February" ],
+                  [ 3,11, "March" ],
+                  [ 4,3, "April" ],
+                  [ 5,2, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,1, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,1, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var misc = [
+                  [ 1,40, "January" ],
+                  [ 2,3, "February" ],
+                  [ 3,5, "March" ],
+                  [ 4,3, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,2, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,20, "September" ],
+                  [ 10,6, "October" ],
+                  [ 11,3, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var mlist = [
+                  [ 1,0, "January" ],
+                  [ 2,1, "February" ],
+                  [ 3,1, "March" ],
+                  [ 4,1, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,1, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,1, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var ms = [
+                  [ 1,6, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,5, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var redhat = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,2, "May" ],
+                  [ 6,1, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,2, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,2, "October" ],
+                  [ 11,1, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var sectrack = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,3, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,8, "September" ],
+                  [ 10,12, "October" ],
+                  [ 11,2, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var secunia = [
+                  [ 1,0, "January" ],
+                  [ 2,0, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,4, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var suse = [
+                  [ 1,4, "January" ],
+                  [ 2,34, "February" ],
+                  [ 3,13, "March" ],
+                  [ 4,21, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,11, "July" ],
+                  [ 8,2, "August" ],
+                  [ 9,7, "September" ],
+                  [ 10,1, "October" ],
+                  [ 11,2, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+              var xf = [
+                  [ 1,0, "January" ],
+                  [ 2,1, "February" ],
+                  [ 3,0, "March" ],
+                  [ 4,0, "April" ],
+                  [ 5,0, "May" ],
+                  [ 6,0, "June" ],
+                  [ 7,0, "July" ],
+                  [ 8,0, "August" ],
+                  [ 9,0, "September" ],
+                  [ 10,0, "October" ],
+                  [ 11,0, "November" ],
+                  [ 12,0, "December" ]
+              ];
+
+          var color = d3.scale.category20();
+        val = group;
+        //console.log(val);
+
+        if(val == "AIXAPAR"){
+          datasetscatter = aixapar;
+        }
+        else if(val == "APPLE"){
+          datasetscatter = apple;
+        }
+        else if(val == "BID"){
+          datasetscatter = bid;
+        }
+        else if(val == "BUGTRAQ"){
+          datasetscatter = bugtraq;
+        }
+        else if(val == "CERT-VN"){
+          datasetscatter = certvn;
+        }
+        else if(val == "CISCO"){
+          datasetscatter = cisco;
+        }
+        else if(val == "CONFIRM"){
+          datasetscatter = confirm;
+        }
+        else if(val == "DEBIAN"){
+          datasetscatter = debian;
+        }
+        else if(val == "FEDORA"){
+          datasetscatter = fedora;
+        }
+        else if(val == "FULLDISC"){
+          datasetscatter = fulldisc;
+        }
+        else if(val == "GENTOO"){
+          datasetscatter = gentoo;
+        }
+        else if(val == "HP"){
+          datasetscatter = hp;
+        }
+        else if(val == "JVN"){
+          datasetscatter = jvn;
+        }
+        else if(val == "MISC"){
+          datasetscatter = misc;
+        }
+        else if(val == "MLIST"){
+          datasetscatter = mlist;
+        }
+        else if(val == "MS"){
+          datasetscatter = ms;
+        }
+        else if(val == "REDHAT"){
+          datasetscatter = redhat;
+        }
+        else if(val == "SECTRACK"){
+          datasetscatter = sectrack;
+        }
+        else if(val == "SECUNIA"){
+          datasetscatter = secunia;
+        }
+        else if(val == "SUSE"){
+          datasetscatter = suse;
+        }
+        else if(val == "XF"){
+          datasetscatter = xf;
+        }
+        else{
+          datasetscatter = apple;
+        }
+ 
+     
+     //var datasetscatter = cisco;
+     var categories = ["AIXAPAR","APPLE","BID","BUGTRAQ","CERT-VN","CISCO","CONFIRM","DEBIAN","FEDORA","FULLDISC","GENTOO", "HP","JVN","MISC","MLIST","MS","REDHAT","SECTRACK","SECUNIA","SUSE","XF"];
+
+
+
+
+     var circles = svg.selectAll("circle")
+               .data(datasetscatter)
+               .transition()
+               .duration(1000)
+               .each("start",function(d){
+                //console.log(this);
+                d3.select(this)
+                  .attr("fill",function(d){
+                    //var categories = ["AIXAPAR","APPLE","BID","BUGTRAQ","CERT-VN","CISCO","CONFIRM","DEBIAN","FEDORA","FULLDISC","GENTOO", "HP","JVN","MISC","MLIST","MS","REDHAT","SECTRACK","SECUNIA","SUSE","XF"];
+            for(j=0;j<categories.length;j++){
+              if(val == categories[j]){
+                console.log(color.range()[j]);
+                return color.range()[j];
+              }
+              
+            }
+                  })
+                  
+               });
+               //.enter()
+               //.append("circle");
+
+     xScale.domain([0,d3.max(datasetscatter,function(d){
+        //console.log(d.CISCO);
+        return d[0];
+     })])
+
+     yScale.domain([0,d3.max(datasetscatter,function(d){
+        //console.log(max(d[1]));
+        return d[1];
+     })])
+
+
+     circles.attr("cx",function(d){
+        //console.log(d);
+        //console.log(d[0]);
+        //console.log(d[1]);
+        return xScale(d[0]); 
+
+
+        //return i*(width/50+1); bar width plus 1 for padding otherwise all the bars stick together since we took x as their width
+        })
+          .attr("cy",function(d){
+            //console.log(d[1]);
+            //console.log(yScale(d[1]));
+          return yScale(d[1]);
+
+        })
+          .attr("r",function(d){
+
+          return Math.sqrt(rScale(d[0]));
+        })
+          .attr("fill",function(d){
+          //var categories = ["AIXAPAR","APPLE","BID","BUGTRAQ","CERT-VN","CISCO","CONFIRM","DEBIAN","FEDORA","FULLDISC","GENTOO", "HP","JVN","MISC","MLIST","MS","REDHAT","SECTRACK","SECUNIA","SUSE","XF"];
+            for(j=0;j<categories.length;j++){
+              if(val == categories[j]){
+                //console.log(j);
+                return color.range()[j];
+              }
+              
+            }
+          //return "rgba(0,"+(d[0]*2)+",0,0.6)";
+        })
+          //.select("title")
+         // .attr("data-original-title",function(d){
+                  //console.log(d[0]);
+         //   return "("+d[2]+","+d[1]+")";
+        //})
+      
+         // .attr("stroke","green")
+         // .attr("stroke-width","0.5px")
+          //.attr("title",function(d){
+          //     return "("0]+","1]+")";
+            // });
+     
+
+     svg.select(".scatterxaxis")
+      .transition()
+      .duration(1000)
+      .call(xAxis);
+
+     svg.select(".scatteryaxis")
+        .transition()
+        .duration(1000)
+        .call(yAxis);
+
+     
+     circles.select("circle")
+     .on("mouseover", function(d){
+                
+                div.transition()    
+                .duration(200)    
+                .style("opacity", .9)
+                .style("width","150px")
+                .style("height","40px")     
+                div.html("<b>Number of Risks:</b> " + d[1] + "<br/>" + "<b>Month :</b> " + d[2])  
+                .style("left", (d3.event.pageX) + "px")   
+                .style("top", (d3.event.pageY - 28) + "px");
+
+
+              })
+              .on("mouseout", function(d){
+                   div.transition()    
+               .duration(500)    
+               .style("opacity", 0);
+              });
+
+
+         }
+
+
+     
+
+
 
 /*
 ############# BAR CHART ###################
@@ -496,12 +1607,14 @@ var datasetBarChart1 = [
 
 */
 
+
+
 var datasetBarChart = [
   {
     "group": "DEBIAN",
     "category": "CVE-2013-7448",
     "summary": "Directory traversal vulnerability in wiki.c in didiwiki allows remote attackers to read arbitrary files via the page parameter to api/page/get.",
-    "score": 5,
+    "score": 5, 
     "date": "3/7/16",
     "measure": 2.5,
     "cvss_id": 1
@@ -9504,107 +10617,109 @@ var div = d3.select("body").append("div")
     .style("opacity", 0);
 
 // set initial group value
-var group = "AIXAPAR";
+var group = "MS";
 
 function datasetBarChosen(group) {
-	var ds = [];
-	for (x in datasetBarChart) {
-		 if(datasetBarChart[x].group==group){
-		 	ds.push(datasetBarChart[x]);
-		 } 
-		}
-	return ds;
-	console.log(ds);
+  var ds = [];
+  for (x in datasetBarChart) {
+     if(datasetBarChart[x].group==group){
+      ds.push(datasetBarChart[x]);
+     } 
+    }
+  return ds;
+  console.log(ds);
 }
 
 
 function dsBarChartBasics() {
 
-		var margin = {top: 30, right: 5, bottom: 20, left: 60},
-		width = 800 - margin.left - margin.right,
-	  height = 225 - margin.top - margin.bottom,
-		colorBar = d3.scale.category20(),
-		barPadding = 1
-		;
-		
-		return {
-			margin : margin, 
-			width : width, 
-			height : height, 
-			colorBar : colorBar, 
-			barPadding : barPadding
-		}			
-		;
+    var margin = {top: 30, right: 5, bottom: 20, left: 60},
+    width = 1220 - margin.left - margin.right,
+    height = 200 - margin.top - margin.bottom,
+    colorBar = d3.scale.category20(),
+    barPadding = 1
+    ;
+    
+    return {
+      margin : margin, 
+      width : width, 
+      height : height, 
+      colorBar : colorBar, 
+      barPadding : barPadding
+    }     
+    ;
 }
 
 function dsBarChart() {
 
-	var firstDatasetBarChart = datasetBarChosen(group);         	
-	
-	var basics = dsBarChartBasics();
-	
-	var margin = basics.margin,
-		width = basics.width,
-	   	height = basics.height,
-		colorBar = basics.colorBar,
-		barPadding = basics.barPadding
-		;
-					
-	var 	xScale = d3.scale.linear()
-						.domain([0, firstDatasetBarChart.length])
-						.range([0, width])
-						;
-						
-	// Create linear y scale 
-	// Purpose: No matter what the data is, the bar should fit into the svg area; bars should not
-	// get higher than the svg height. Hence incoming data needs to be scaled to fit into the svg area.  
-	var yScale = d3.scale.linear()
-			// use the max funtion to derive end point of the domain (max value of the dataset)
-			// do not use the min value of the dataset as min of the domain as otherwise you will not see the first bar
-		   .domain([0, d3.max(firstDatasetBarChart, function(d) { 
-		   //console.log(d["measure"]);
-		   	return d.measure; })])
-		   // As coordinates are always defined from the top left corner, the y position of the bar
-		   // is the svg height minus the data value. So you basically draw the bar starting from the top. 
-		   // To have the y position calculated by the range function
-		   .range([height, 0])
-		   ;
-	
-	//Create SVG element
-	
-	var svg = d3.select("#barChart")
-			.append("svg")
-		    .attr("width", width + margin.left + margin.right)
-		    .attr("height", height + margin.top + margin.bottom)
-		    .attr("id","barChartPlot")
-		    ;
-	
-	var plot = svg//.append("g")
-		    	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-	            
-	var rect = plot.selectAll("rect")
-		   .data(firstDatasetBarChart);
+  var firstDatasetBarChart = datasetBarChosen(group);           
+  
+  var basics = dsBarChartBasics();
+  
+  var margin = basics.margin,
+    width = basics.width,
+      height = basics.height,
+    colorBar = basics.colorBar,
+    barPadding = basics.barPadding
+    ;
+          
+  var   xScale = d3.scale.linear()
+            .domain([0, firstDatasetBarChart.length])
+            .range([0, width])
+            ;
+            
+  // Create linear y scale 
+  // Purpose: No matter what the data is, the bar should fit into the svg area; bars should not
+  // get higher than the svg height. Hence incoming data needs to be scaled to fit into the svg area.  
+  var yScale = d3.scale.linear()
+      // use the max funtion to derive end point of the domain (max value of the dataset)
+      // do not use the min value of the dataset as min of the domain as otherwise you will not see the first bar
+       .domain([0, d3.max(firstDatasetBarChart, function(d) { 
+       //console.log(d["measure"]);
+        return d.measure; })])
+       // As coordinates are always defined from the top left corner, the y position of the bar
+       // is the svg height minus the data value. So you basically draw the bar starting from the top. 
+       // To have the y position calculated by the range function
+       .range([height, 0])
+       ;
+  
+  //Create SVG element
+  
+  var svg = d3.select("#barChart")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("id","barChartPlot")
+        ;
+  
+  var plot = svg//.append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+              
+  var rect = plot.selectAll("rect")
+       .data(firstDatasetBarChart);
 
 
-	rect.enter()
-		   .append("rect")
-	
-	rect.attr("x", function(d, i) {
-			    return xScale(i);
-			})
-		   .attr("width", width / firstDatasetBarChart.length - barPadding)   
-			.attr("y", function(d) {
-			    return yScale(d.measure);
-			})  
-			.attr("height", function(d) {
-			    return height-yScale(d.measure);
-			})
-			.attr("fill", "lightgrey")
+  rect.enter()
+       .append("rect")
+  
+  rect.attr("x", function(d, i) {
+          return xScale(i);
+      })
+       .attr("width", width / firstDatasetBarChart.length - barPadding)   
+      .attr("y", function(d) {
+          return yScale(d.measure);
+      })  
+      .attr("height", function(d) {
+          return height-yScale(d.measure);
+      })
+      .attr("fill", "lightgrey")
       .on("mouseover", function(d) {    
             div.transition()    
                 .duration(200)    
-                .style("opacity", .9);    
-            div .html("Vulnerability Score: " + d.score + "<br/>"  + "CVE ID: " +d.category + "<br/>"  + "Risk Score: " +d.measure + "<br/>"  + "Summary: " + d.summary)  
+                .style("opacity", .9)
+                .style("width","500px")
+                .style("height","150px")    
+            div .html("<b>Vulnerability Score :</b>" + d.score + "<br/>"  + "<b>CVE ID :</b> " +d.category + "<br/>"  + "<b>Risk Score :</b> " +d.measure + "<br/>"  + "<b>Summary :</b> " + d.summary)  
                 .style("left", (d3.event.pageX) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px");  
             })          
@@ -9614,73 +10729,73 @@ function dsBarChart() {
                 .style("opacity", 0); 
         });
 
-			
-	
-	rect.exit().remove();
-		
-	// Add y labels to plot	
-	
+      
+  
+  rect.exit().remove();
+    
+  // Add y labels to plot 
+  
 /*
-	plot.selectAll("text")
-	.data(firstDatasetBarChart)
-	.enter()
-	.append("text")
-	.text(function(d) {
-			//return formatAsInteger(d3.round(d.measure));
-			return formatAsInteger(d.measure);
-	})
-	.attr("text-anchor", "middle")
-	// Set x position to the left edge of each bar plus half the bar width
-	.attr("x", function(d, i) {
-			return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
-	})
-	.attr("y", function(d) {
-			return yScale(d.measure) + 14;
-	})
-	.attr("class", "yAxis");
-	/* moved to CSS			   
-	.attr("font-family", "sans-serif")
-	.attr("font-size", "11px")
-	.attr("fill", "white");
-	*/
+  plot.selectAll("text")
+  .data(firstDatasetBarChart)
+  .enter()
+  .append("text")
+  .text(function(d) {
+      //return formatAsInteger(d3.round(d.measure));
+      return formatAsInteger(d.measure);
+  })
+  .attr("text-anchor", "middle")
+  // Set x position to the left edge of each bar plus half the bar width
+  .attr("x", function(d, i) {
+      return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
+  })
+  .attr("y", function(d) {
+      return yScale(d.measure) + 14;
+  })
+  .attr("class", "yAxis");
+  /* moved to CSS        
+  .attr("font-family", "sans-serif")
+  .attr("font-size", "11px")
+  .attr("fill", "white");
+  */
 
 
 
-	
-	// Add x labels to chart	
-	
+  
+  // Add x labels to chart  
+  
   /*
-	var xLabels = svg
-		    .append("g")
-		    .attr("transform", "translate(" + margin.left + "," + (margin.top + height)  + ")")
-		    ;
-	
-	xLabels.selectAll("text.xAxis")
-		  .data(firstDatasetBarChart)
-		  .enter()
-		  .append("text")
-		  .text(function(d) { return d.category;})
-		  .attr("text-anchor", "end")
-			// Set x position to the left edge of each bar plus half the bar width
-						   .attr("x", function(d, i) {
-						   		return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
-						   })
-		  .attr("y", 15)
-		  .attr("class", "xAxis")
-		  //.attr("style", "font-size: 12; font-family: Helvetica, sans-serif")
-		  ;			
+  var xLabels = svg
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + (margin.top + height)  + ")")
+        ;
+  
+  xLabels.selectAll("text.xAxis")
+      .data(firstDatasetBarChart)
+      .enter()
+      .append("text")
+      .text(function(d) { return d.category;})
+      .attr("text-anchor", "end")
+      // Set x position to the left edge of each bar plus half the bar width
+               .attr("x", function(d, i) {
+                  return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
+               })
+      .attr("y", 15)
+      .attr("class", "xAxis")
+      //.attr("style", "font-size: 12; font-family: Helvetica, sans-serif")
+      ;     
 
       */
-	 
-	// Title
-	
-	svg.append("text")
-		.attr("x", (width + margin.left + margin.right)/2)
-		.attr("y", 15)
-		.attr("class","title")				
-		.attr("text-anchor", "middle")
-		.text("")
-		;
+   
+  // Title
+  
+  svg.append("text")
+    .attr("x", (width + margin.left + margin.right)/2)
+    .attr("y", 15)
+    .attr("class","title")        
+    .attr("text-anchor", "middle")
+    .text("")
+    ;
 
 }
 
@@ -9693,66 +10808,68 @@ dsBarChart();
 
 function updateBarChart(group, colorChosen) {
 
-		//d3.select("#barChart svg").remove();
+    //d3.select("#barChart svg").remove();
 
-		var currentDatasetBarChart = datasetBarChosen(group);
-		
-		var basics = dsBarChartBasics();
-	
-		var margin = basics.margin,
-			width = basics.width,
-		   	height = basics.height,
-			colorBar = basics.colorBar,
-			barPadding = basics.barPadding
-			;
-		
-		var xScale = d3.scale.linear()
-			.domain([0, currentDatasetBarChart.length])
-			.range([0, width])
-			;
-		
-			
-		var yScale = d3.scale.linear()
-	      .domain([0, d3.max(currentDatasetBarChart, function(d) { return d.measure; })])
-	      .range([height,0])
-	      ;
-	      
-	   var svg = d3.select("#barChart svg");
-	      
-	   var plot = d3.select("#barChartPlot")
-	   				.datum(currentDatasetBarChart);
-	
-	  		/* Note that here we only have to select the elements - no more appending! */
-	  	var rect = plot.selectAll("rect")
-	      			   .data(currentDatasetBarChart);
+    var currentDatasetBarChart = datasetBarChosen(group);
+    
+    var basics = dsBarChartBasics();
+  
+    var margin = basics.margin,
+      width = basics.width,
+        height = basics.height,
+      colorBar = basics.colorBar,
+      barPadding = basics.barPadding
+      ;
+    
+    var xScale = d3.scale.linear()
+      .domain([0, currentDatasetBarChart.length])
+      .range([0, width])
+      ;
+    
+      
+    var yScale = d3.scale.linear()
+        .domain([0, d3.max(currentDatasetBarChart, function(d) { return d.measure; })])
+        .range([height,0])
+        ;
+        
+     var svg = d3.select("#barChart svg");
+        
+     var plot = d3.select("#barChartPlot")
+            .datum(currentDatasetBarChart);
+  
+        /* Note that here we only have to select the elements - no more appending! */
+      var rect = plot.selectAll("rect")
+                 .data(currentDatasetBarChart);
 
-	    
-	    rect.enter()
-	      	.append("rect");
+      
+      rect.enter()
+          .append("rect");
 
-	    rect.exit().remove();
+      rect.exit().remove();
 
-	    rect.transition()
-			.duration(750)
-			.attr("x", function(d, i) {
-			    return xScale(i);
-			})
-		   .attr("width", width / currentDatasetBarChart.length - barPadding)   
-			.attr("y", function(d) {
-			    return yScale(d.measure);
-			})  
-			.attr("height", function(d) {
-			    return height-yScale(d.measure);
-			})
-			.attr("fill", colorChosen);
+      rect.transition()
+      .duration(750)
+      .attr("x", function(d, i) {
+          return xScale(i);
+      })
+       .attr("width", width / currentDatasetBarChart.length - barPadding)   
+      .attr("y", function(d) {
+          return yScale(d.measure);
+      })  
+      .attr("height", function(d) {
+          return height-yScale(d.measure);
+      })
+      .attr("fill", colorChosen);
 
 
 
       rect.on("mouseover", function(d) {    
             div.transition()    
                 .duration(200)    
-                .style("opacity", .9);    
-            div .html("Vulnerability Score: " + d.score + "<br/>"  + "CVE ID: " +d.category + "<br/>"  + "Risk Score: " +d.measure + "<br/>"  + "Summary: " + d.summary)  
+                .style("opacity", .9)
+                .style("width","500px")
+                .style("height","150px")    
+            div .html("<b>Vulnerability Score :</b> " + d.score + "<br/>"  + "<b>CVE ID :</b> " +d.category + "<br/>"  + "<b>Risk Score :</b> " +d.measure + "<br/>"  + "<b>Summary :</b> " + d.summary)  
                 .style("left", (d3.event.pageX) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px");  
             })          
@@ -9761,50 +10878,50 @@ function updateBarChart(group, colorChosen) {
                 .duration(500)    
                 .style("opacity", 0); 
         });
-		
+    
 
 /* REMOVE THIS FOR TEXT ON BAR
-	var text = plot.selectAll("text")
-			.data(currentDatasetBarChart);
+  var text = plot.selectAll("text")
+      .data(currentDatasetBarChart);
 
-		text.enter()
-			.append("text");
+    text.enter()
+      .append("text");
 
-		text.exit().remove();
+    text.exit().remove();
 
-		text.transition()
-			.duration(750)
-			.text(function(d) {
-					//return formatAsInteger(d3.round(d.measure));
-					return formatAsInteger(d.measure);
-			})
-			.attr("text-anchor", "middle")
-			// Set x position to the left edge of each bar plus half the bar width
-			.attr("x", function(d, i) {
-					return (i * (width / currentDatasetBarChart.length)) + ((width / currentDatasetBarChart.length - barPadding) / 2);
-			})
-			.attr("y", function(d) {
-					return yScale(d.measure) + 14;
-			})
-			.attr("class", "yAxis")
-			/* moved to CSS			   
-			.attr("font-family", "sans-serif")
-			.attr("font-size", function(d, i){
-				return width/2;
-			})
-			.attr("fill", "white")
-			*/
-			;
-			
-		
+    text.transition()
+      .duration(750)
+      .text(function(d) {
+          //return formatAsInteger(d3.round(d.measure));
+          return formatAsInteger(d.measure);
+      })
+      .attr("text-anchor", "middle")
+      // Set x position to the left edge of each bar plus half the bar width
+      .attr("x", function(d, i) {
+          return (i * (width / currentDatasetBarChart.length)) + ((width / currentDatasetBarChart.length - barPadding) / 2);
+      })
+      .attr("y", function(d) {
+          return yScale(d.measure) + 14;
+      })
+      .attr("class", "yAxis")
+      /* moved to CSS        
+      .attr("font-family", "sans-serif")
+      .attr("font-size", function(d, i){
+        return width/2;
+      })
+      .attr("fill", "white")
+      */
+      ;
+      
+    
 
-		svg.selectAll("text.title") // target the text element(s) which has a title class defined
-			.attr("x", (width + margin.left + margin.right)/2)
-			.attr("y", 200)
-			.attr("class","title")				
-			.attr("text-anchor", "middle")
-			.text(group + "'s Risk Score 2015-16")
-		;
+    svg.selectAll("text.title") // target the text element(s) which has a title class defined
+      .attr("x", (width + margin.left + margin.right)/2 -25)
+      .attr("y", 165)
+      .attr("class","title")        
+      .attr("text-anchor", "middle")
+      .text(group + "'s Risk Score 2015-16")
+    ;
 
     //UPDATE TABLE AS WELL
 
@@ -9958,132 +11075,134 @@ var datasetLineChart = datasetBarChart;
 
 
 // set initial category value
-var group = "AIXAPAR";
+var group = "MS";
 
 
 function datasetLineChartChosen(group) {
-	var ds = [];
-	for (x in datasetLineChart) {
-		 //sum = sum + datasetLineChart[x].measure;
-		 if(datasetLineChart[x].group==group){
-		 	ds.push(datasetLineChart[x]);
-		 } 
-		}
-	return ds;
+  var ds = [];
+  for (x in datasetLineChart) {
+     //sum = sum + datasetLineChart[x].measure;
+     if(datasetLineChart[x].group==group){
+      ds.push(datasetLineChart[x]);
+     } 
+    }
+  return ds;
 }
 
 
 function dsLineChartBasics() {
 
-	var margin = {top: 20, right: 40, bottom: 5, left: 50},
-	    width = 800 - margin.left - margin.right,
-	    height = 150 - margin.top - margin.bottom
-	    ;
-		
-		return {
-			margin : margin, 
-			width : width, 
-			height : height
-		}			
-		;
+  var margin = {top: 20, right: 50, bottom: 5, left: 50},
+      width = 1220 - margin.left - margin.right,
+      height = 150 - margin.top - margin.bottom
+      ;
+    
+    return {
+      margin : margin, 
+      width : width, 
+      height : height
+    }     
+    ;
 }
 
 
 function dsLineChart() {
 
-	var firstDatasetLineChart = datasetLineChartChosen(group);  
+
+
+  var firstDatasetLineChart = datasetLineChartChosen(group);  
 
   var div = d3.select("body").append("div") 
               .attr("class", "tooltip2")       
               .style("opacity", 0);  
 
-	var sum = 0;
-	
-	for (x in firstDatasetLineChart) {
-			 //console.log(x);
-			 sum = sum + firstDatasetLineChart[x].measure;
-			 
-	}
-	//console.log(firstDatasetLineChart.length);
-	var avg = 0;
-	avg = sum/firstDatasetLineChart.length;
-	//console.log(sum/firstDatasetLineChart.length);
-	
-	var basics = dsLineChartBasics();
-	
-	var margin = basics.margin,
-		width = basics.width,
-	   height = basics.height
-		;
+  var sum = 0;
+  
+  for (x in firstDatasetLineChart) {
+       //console.log(x);
+       sum = sum + firstDatasetLineChart[x].measure;
+       
+  }
+  //console.log(firstDatasetLineChart.length);
+  var avg = 0;
+  avg = sum/firstDatasetLineChart.length;
+  //console.log(sum/firstDatasetLineChart.length);
+  
+  var basics = dsLineChartBasics();
+  
+  var margin = basics.margin,
+    width = basics.width,
+     height = basics.height
+    ;
 
-	var xScale = d3.scale.linear()
-	    .domain([0, firstDatasetLineChart.length-1])
-	    .range([0, width])
-	    ;
+  var xScale = d3.scale.linear()
+      .domain([0, firstDatasetLineChart.length-1])
+      .range([0, width])
+      ;
 
-	var yScale = d3.scale.linear()
-	    .domain([0, d3.max(firstDatasetLineChart, function(d) { 
+  var yScale = d3.scale.linear()
+      .domain([0, d3.max(firstDatasetLineChart, function(d) { 
         console.log(d.measure);
         return d.measure; })])
-	    .range([height, 0])
-	    ;
-	
-	var line = d3.svg.line()
-	    //.x(function(d) { return xScale(d.category); })
-	    .x(function(d, i) { return xScale(i); })
-	    .y(function(d) { return yScale(d.measure); })
-	    ;
-	
-	var svg = d3.select("#lineChart").append("svg")
-	    .datum(firstDatasetLineChart)
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	    // create group and move it so that margins are respected (space for axis and title)
-	    
-	var plot = svg
-	    .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-	    .attr("id", "lineChartPlot")
-	    ;
+      .range([height, 0])
+      ;
+  
+  var line = d3.svg.line()
+      //.x(function(d) { return xScale(d.category); })
+      .x(function(d, i) { return xScale(i); })
+      .y(function(d) { return yScale(d.measure); })
+      ;
+  
+  var svg = d3.select("#lineChart").append("svg")
+      .datum(firstDatasetLineChart)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      // create group and move it so that margins are respected (space for axis and title)
+      
+  var plot = svg
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("id", "lineChartPlot")
+      ;
 
-		/* descriptive titles as part of plot -- start */
-
-
-
-	
-
-	plot.append("text")
-		//.text(firstDatasetLineChart[dsLength-1].measure)
-		.text(d3.round(avg,3))
-		.attr("id","lineChartTitle2")
-		.attr("x",width/2)
-		.attr("y",height/2)	
-		;
-	/* descriptive titles -- end */
+    /* descriptive titles as part of plot -- start */
 
 
-	    
-	plot.append("path")
-	    .attr("class", "line")
-	    .attr("d", line)	
-	    // add color
-		.attr("stroke", "lightgrey")
-	    ;
-	  
-	var circles = plot.selectAll(".dot")
-	    .data(firstDatasetLineChart)
-	  	 
-	circles.enter().append("circle")
-	.attr("class", "dot")
-	    
 
-	    //.attr("stroke", function (d) { return d.measure==datasetMeasureMin ? "red" : (d.measure==datasetMeasureMax ? "green" : "steelblue") } )
-	circles.attr("fill", function (d) { return d.measure==d3.min(firstDatasetLineChart, function(d) { return d.measure; }) ? "green" : (d.measure==d3.max(firstDatasetLineChart, function(d) { return d.measure; }) ? "red" : "white") } )
-	    //.attr("stroke-width", function (d) { return d.measure==datasetMeasureMin || d.measure==datasetMeasureMax ? "3px" : "1.5px"} )
-	    .attr("cx", line.x())
-	    .attr("cy", line.y())
-	    .attr("r", 3.5)
-	    .attr("stroke", "lightgrey")
+  
+
+  plot.append("text")
+    //.text(firstDatasetLineChart[dsLength-1].measure)
+    .text(d3.round(avg,3))
+    .attr("id","lineChartTitle2")
+    .attr("x",width/2)
+    .attr("y",height/2) 
+    ;
+  /* descriptive titles -- end */
+
+
+      
+  plot.append("path")
+      .attr("class", "line")
+      .attr("d", line)  
+      // add color
+    .attr("stroke", "lightgrey")
+      ;
+    
+  var circles = plot.selectAll(".dot")
+      .data(firstDatasetLineChart)
+       
+  circles.enter().append("circle")
+  .attr("class", "dot")
+      
+
+      //.attr("stroke", function (d) { return d.measure==datasetMeasureMin ? "red" : (d.measure==datasetMeasureMax ? "green" : "steelblue") } )
+  circles.attr("fill", function (d) { return d.measure==d3.min(firstDatasetLineChart, function(d) { return d.measure; }) ? "green" : (d.measure==d3.max(firstDatasetLineChart, function(d) { return d.measure; }) ? "red" : "white") } )
+      //.attr("stroke-width", function (d) { return d.measure==datasetMeasureMin || d.measure==datasetMeasureMax ? "3px" : "1.5px"} )
+      .attr("cx", line.x())
+      .attr("cy", line.y())
+      .attr("r", 3.5)
+      .attr("stroke", "lightgrey")
       .on("mouseover", function(d){
             
             //console.log(d);
@@ -10091,7 +11210,7 @@ function dsLineChart() {
             div.transition()    
                 .duration(200)    
                 .style("opacity", .9);    
-            div .html("CVE-ID: " + d.category + "<br/>" + "Risk Score: " + d3.round(d.measure,2))  
+            div .html("<b>CVE-ID :</b> " + d.category + "<br/>" + "<b>Risk Score :</b> " + d3.round(d.measure,2))  
                 .style("left", (d3.event.pageX) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px");
 
@@ -10101,19 +11220,19 @@ function dsLineChart() {
                .duration(500)    
                .style("opacity", 0); 
             })
-	    .append("title")
+      .append("title")
 
-	   // .text(function(d) { return d.category + ": " + formatAsInteger(d.measure); })
-	    ;
+     // .text(function(d) { return d.category + ": " + formatAsInteger(d.measure); })
+      ;
 
-	circles.exit().remove();
+  circles.exit().remove();
 
-	svg.append("text")
-		.text("Average Risk Score")
-		.attr("id","lineChartTitle1")	
-		.attr("x",margin.left + ((width + margin.right)/2))
-		.attr("y", 15)
-		;
+  svg.append("text")
+    .text("Average Risk Score")
+    .attr("id","lineChartTitle1") 
+    .attr("x",margin.left + ((width + margin.right)/2) - 25)
+    .attr("y", 15)
+    ;
 
 }
 
@@ -10125,95 +11244,95 @@ dsLineChart();
 /* updates bar chart on request */
 function updateLineChart(group, colorChosen) {
 
-	var currentDatasetLineChart = datasetLineChartChosen(group); 
-	//console.log(currentDatasetLineChart.length);  
+
+  var currentDatasetLineChart = datasetLineChartChosen(group); 
+  //console.log(currentDatasetLineChart.length);  
 
   var div = d3.select("body").append("div") 
               .attr("class", "tooltip2")       
               .style("opacity", 0); 
 
-	var sum = 0;
-	
-	for (x in currentDatasetLineChart) {
-			 //console.log(x);
-			 sum = sum + currentDatasetLineChart[x].measure;
-			 
-	}
-	//console.log(currentDatasetLineChart.length);
-	var avg = 0;
-	avg = sum/currentDatasetLineChart.length;
-	console.log(sum/currentDatasetLineChart.length);
+  var sum = 0;
+  
+  for (x in currentDatasetLineChart) {
+       //console.log(x);
+       sum = sum + currentDatasetLineChart[x].measure;
+       
+  }
+  //console.log(currentDatasetLineChart.length);
+  var avg = 0;
+  avg = sum/currentDatasetLineChart.length;
+  console.log(sum/currentDatasetLineChart.length);
 
-	
+  
 
-	var basics = dsLineChartBasics();
-	
-	var margin = basics.margin,
-		width = basics.width,
-	   height = basics.height
-		;
+  var basics = dsLineChartBasics();
+  
+  var margin = basics.margin,
+    width = basics.width,
+     height = basics.height
+    ;
 
-	var xScale = d3.scale.linear()
-	    .domain([0, currentDatasetLineChart.length-1])
-	    .range([0, width])
-	    ;
+  var xScale = d3.scale.linear()
+      .domain([0, currentDatasetLineChart.length-1])
+      .range([0, width])
+      ;
 
-	var yScale = d3.scale.linear()
-	    .domain([0, d3.max(currentDatasetLineChart, function(d) { return d.measure; })])
-	    .range([height, 0])
-	    ;
-	
-	var line = d3.svg.line()
+  var yScale = d3.scale.linear()
+      .domain([0, d3.max(currentDatasetLineChart, function(d) { return d.measure; })])
+      .range([height, 0])
+      ;
+  
+  var line = d3.svg.line()
     .x(function(d, i) { return xScale(i); })
     .y(function(d) { return yScale(d.measure); })
     ;
 
    var plot = d3.select("#lineChartPlot")
-   	.datum(currentDatasetLineChart)
-	   ;
-	   
-	/* descriptive titles as part of plot -- start */
-	var dsLength=currentDatasetLineChart.length;
+    .datum(currentDatasetLineChart)
+     ;
+     
+  /* descriptive titles as part of plot -- start */
+  var dsLength=currentDatasetLineChart.length;
 
-	plot.select("text")
-		//.text(currentDatasetLineChart[dsLength-1].measure)
-		.text(d3.round(avg,3))
-		;
-	/* descriptive titles -- end */
-	
-	   
-	plot
-	.select("path")
-		.transition()
-		.duration(750)			    
-	   .attr("class", "line")
-	   .attr("d", line)	
-	   // add color
-		.attr("stroke", colorChosen)
-	   ;
+  plot.select("text")
+    //.text(currentDatasetLineChart[dsLength-1].measure)
+    .text(d3.round(avg,3))
+    ;
+  /* descriptive titles -- end */
+  
+     
+  plot
+  .select("path")
+    .transition()
+    .duration(750)          
+     .attr("class", "line")
+     .attr("d", line) 
+     // add color
+    .attr("stroke", colorChosen);
 
-	
+  
 
-	var path = plot
-		.selectAll(".dot")
-	    .data(currentDatasetLineChart)
-	   //.exit()
+  var path = plot
+    .selectAll(".dot")
+      .data(currentDatasetLineChart)
+     //.exit()
 
-	path.enter().append("circle");
+  path.enter().append("circle");
 
-	path.exit().remove();
+  path.exit().remove();
 
-	path
-	.transition()
-		.duration(750)
-	   .attr("class", "dot")
-	   .attr("fill", function (d) { return d.measure==d3.min(currentDatasetLineChart, function(d) { return d.measure; }) ? "green" : (d.measure==d3.max(currentDatasetLineChart, function(d) { return d.measure; }) ? "red" : "white") } )
-	   .attr("cx", line.x())
-	   .attr("cy", line.y())
-	   .attr("r", 3.5)
-	   // add color
-		.attr("stroke", colorChosen)
-	   ;
+  path
+  .transition()
+    .duration(750)
+     .attr("class", "dot")
+     .attr("fill", function (d) { return d.measure==d3.min(currentDatasetLineChart, function(d) { return d.measure; }) ? "green" : (d.measure==d3.max(currentDatasetLineChart, function(d) { return d.measure; }) ? "red" : "white") } )
+     .attr("cx", line.x())
+     .attr("cy", line.y())
+     .attr("r", 3.5)
+     // add color
+    .attr("stroke", colorChosen)
+     ;
 
      path.on("mouseover", function(d){
             
@@ -10222,7 +11341,7 @@ function updateLineChart(group, colorChosen) {
             div.transition()    
                 .duration(200)    
                 .style("opacity", .9);    
-            div .html("CVE-ID: " + d.category + "<br/>" + "Risk Score: " + d3.round(d.measure,2))  
+            div .html("<b>CVE-ID :</b> " + d.category + "<br/>" + "<b>Risk Score :</b> " + d3.round(d.measure,2))  
                 .style("left", (d3.event.pageX) + "px")   
                 .style("top", (d3.event.pageY - 28) + "px");
 
@@ -10232,11 +11351,11 @@ function updateLineChart(group, colorChosen) {
                .duration(500)    
                .style("opacity", 0); 
             })
-	   
-	   path
-	   .selectAll("title")
-	   //.text(function(d) { return d.category + ": " + formatAsInteger(d.measure); })	 
-	   ;  
+     
+     path
+     .selectAll("title")
+     //.text(function(d) { return d.category + ": " + formatAsInteger(d.measure); })   
+     ;  
 
 }
   
@@ -10379,6 +11498,7 @@ d3.select(".dropdown-select")
         updateBarChart(data);
         updateBarChart(data, color.range()[j]);
         updateLineChart(data, color.range()[j]);
+        updateScatter(data);
 }
 }
         /* update bar chart when user selects piece of the pie chart */
@@ -10484,6 +11604,8 @@ d3.select("table").remove();
 });
 
   })
-    </script>
+
+
+    </script> 
   </body>
 </html>
