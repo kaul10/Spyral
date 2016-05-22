@@ -11,9 +11,15 @@
   <!-- Note: I made good use of the sample code provided by the D3JS community and extended it to fit my needs to create this simple dashboard -->
     <style type="text/css">
 
+  
+
 #table-location {
     position: absolute;
+<<<<<<< HEAD
     top: 900px;
+=======
+    top: 680px;
+>>>>>>> master
     width: 100%;
     float: left;
     border: 1px grey;
@@ -21,6 +27,12 @@
     table-layout: fixed;
     overflow: scroll;
     height: 500px;
+<<<<<<< HEAD
+=======
+    padding-left: 70px;
+    padding-right: 55px;
+
+>>>>>>> master
 }
 
 th, tr {
@@ -35,42 +47,82 @@ td {
 
 #pieChart {    
   position:absolute;
+<<<<<<< HEAD
   top:100px;
   left:10px;
   width:400px;
   height: 350px; 
+=======
+  top:90px;
+  left:510px;
+  width:400px;
+  height: 350px; 
+  padding: 10px;
+>>>>>>> master
 }
 
 
 
 #lineChart {    
   position:absolute;
+<<<<<<< HEAD
   top:100px;
   left:410px;
   height: 150px;
+=======
+  top:375px;
+  left:20px;
+  height: 150px;
+  padding-left: 20px;
+>>>>>>> master
 }
 
 #barChart {
   position:absolute;
+<<<<<<< HEAD
   top:235px;
   left:450px;
   height: 250px;
+=======
+  top:480px;
+  left:20px;
+  height: 250px;
+  width: 500px;
+  padding-left: 50px;
+>>>>>>> master
 }
 
 #scatterChart {
   position:absolute;
+<<<<<<< HEAD
   top:500px;
   left:600px;
   height: 250px;
+=======
+  top:70px;
+  left:825px;
+  height: 250px;
+  padding-right: 50px;
+>>>>>>> master
 }
 
 #questiontable {
   position:absolute;
+<<<<<<< HEAD
   top:500px;
   left:10px;
   height: 300px;
   width: 500px;
   overflow: scroll;
+=======
+  top:100px;
+  left:20px;
+  height: 250px;
+  width: 425px;
+  overflow: scroll;
+  padding-left: 50px;
+  font-size: 10px;
+>>>>>>> master
 }
 
 .slice {
@@ -107,7 +159,11 @@ td {
 
 .title {
    font-family: Verdana;
+<<<<<<< HEAD
     font-size: 15px;
+=======
+    font-size: 10px;
+>>>>>>> master
     font-weight: bold;  
     
 }
@@ -134,7 +190,11 @@ td {
 
 #lineChartTitle2 {
   font-family: Verdana;
+<<<<<<< HEAD
   font-size  : 72px;
+=======
+  font-size  : 62px;
+>>>>>>> master
   fill       : black;
   text-anchor: middle;
   font-weight: bold;
@@ -181,14 +241,15 @@ div.tooltip3 {
 }
 
 .dropdown {
-  top: 460px;
+  top: 265px;
   float: left;
-  margin-left: 10px;
+  padding-left: 70px;
 
 }
 
 #logo {
-  width: 800px;
+  width: 790px;
+  height: 100px;
 }
 
 #image {
@@ -204,7 +265,11 @@ div.tooltip3 {
 }
 
 .scatterxaxis text {
+<<<<<<< HEAD
   font-size: 10px;
+=======
+  font-size: 9px;
+>>>>>>> master
   font-family: sans-serif;
   font-weight: bold;
 }
@@ -213,11 +278,19 @@ div.tooltip3 {
   fill: none;
   stroke: black;
   shape-rendering: crispEdges;
+<<<<<<< HEAD
   font-weight: bold;
 }
 
 .scatteryaxis text {
   font-size: 10px;
+=======
+
+}
+
+.scatteryaxis text {
+  font-size: 9px;
+>>>>>>> master
   font-family: sans-serif;
   font-weight: bold;
 }
@@ -247,7 +320,12 @@ table#t01 {
          
     </style>
   </head>
+
   <body>
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> master
 
     <div id="logo">
     <img id ="image" src="s3.png">
@@ -531,11 +609,18 @@ function formChanged(){
           //console.log(datasetBarChart[0].measure);
           datasetBarChart[i].measure = d3.round((new_rs * datasetBarChart[i].score),2);
           console.log(datasetBarChart[0].measure);
+<<<<<<< HEAD
 
 
         }
 
         
+=======
+          
+          }
+
+      
+>>>>>>> master
       //Redraw D#
 
   }
@@ -606,8 +691,13 @@ function dsPieChart(){
         ]
         ;     
 
+<<<<<<< HEAD
   var   width = 325,
        height = 325,
+=======
+  var   width = 250,
+       height = 250,
+>>>>>>> master
        outerRadius = Math.min(width, height) / 2,
        innerRadius = outerRadius * .999,   
        // for animation
@@ -703,6 +793,10 @@ function dsPieChart(){
         .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
         //.text(function(d) { return formatAsPercentage(d.value); })
         .text(function(d) { return d.data.category; })
+<<<<<<< HEAD
+=======
+        .attr("font-size","8px")
+>>>>>>> master
         ;
      
      // Computes the label angle of an arc, converting from radians to degrees.
@@ -825,7 +919,11 @@ var color = d3.scale.category20();
 
 
      //Declare the width and height
+<<<<<<< HEAD
      var width = 600;
+=======
+     var width = 450;
+>>>>>>> master
      var height = 300;
      var padding = 30;
     
@@ -1008,11 +1106,19 @@ var color = d3.scale.category20();
 
      // now add titles to the axes
         svg.append("text")
+<<<<<<< HEAD
           .attr("font-size","8px")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
             .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
             .text("Number of Risks")
             .attr("font-weight", "bold");
+=======
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+            .text("Number of Risks")
+            .attr("font-weight", "bold")
+            .attr("font-size","8px");
+>>>>>>> master
 
 
         svg.append("text")
@@ -10619,8 +10725,13 @@ function datasetBarChosen(group) {
 function dsBarChartBasics() {
 
     var margin = {top: 30, right: 5, bottom: 20, left: 60},
+<<<<<<< HEAD
     width = 800 - margin.left - margin.right,
     height = 225 - margin.top - margin.bottom,
+=======
+    width = 1220 - margin.left - margin.right,
+    height = 200 - margin.top - margin.bottom,
+>>>>>>> master
     colorBar = d3.scale.category20(),
     barPadding = 1
     ;
@@ -10901,8 +11012,13 @@ function updateBarChart(group, colorChosen) {
     
 
     svg.selectAll("text.title") // target the text element(s) which has a title class defined
+<<<<<<< HEAD
       .attr("x", (width + margin.left + margin.right)/2)
       .attr("y", 200)
+=======
+      .attr("x", (width + margin.left + margin.right)/2 -25)
+      .attr("y", 165)
+>>>>>>> master
       .attr("class","title")        
       .attr("text-anchor", "middle")
       .text(group + "'s Risk Score 2015-16")
@@ -11077,8 +11193,13 @@ function datasetLineChartChosen(group) {
 
 function dsLineChartBasics() {
 
+<<<<<<< HEAD
   var margin = {top: 20, right: 40, bottom: 5, left: 50},
       width = 800 - margin.left - margin.right,
+=======
+  var margin = {top: 20, right: 50, bottom: 5, left: 50},
+      width = 1220 - margin.left - margin.right,
+>>>>>>> master
       height = 150 - margin.top - margin.bottom
       ;
     
@@ -11093,6 +11214,11 @@ function dsLineChartBasics() {
 
 function dsLineChart() {
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
   var firstDatasetLineChart = datasetLineChartChosen(group);  
 
   var div = d3.select("body").append("div") 
@@ -11213,7 +11339,11 @@ function dsLineChart() {
   svg.append("text")
     .text("Average Risk Score")
     .attr("id","lineChartTitle1") 
+<<<<<<< HEAD
     .attr("x",margin.left + ((width + margin.right)/2))
+=======
+    .attr("x",margin.left + ((width + margin.right)/2) - 25)
+>>>>>>> master
     .attr("y", 15)
     ;
 
@@ -11227,6 +11357,10 @@ dsLineChart();
 /* updates bar chart on request */
 function updateLineChart(group, colorChosen) {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
   var currentDatasetLineChart = datasetLineChartChosen(group); 
   //console.log(currentDatasetLineChart.length);  
 
@@ -11588,6 +11722,10 @@ d3.select("table").remove();
   })
 
 
+<<<<<<< HEAD
     </script>
+=======
+    </script> 
+>>>>>>> master
   </body>
 </html>
