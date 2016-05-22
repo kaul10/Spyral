@@ -15,39 +15,48 @@
 
 #table-location {
     position: absolute;
-    top: 900px;
-    top: 680px;
     top: 680px;
     width: 100%;
     float: left;
     border: 1px grey;
     text-align: center;
+    font-weight: bold;
     table-layout: fixed;
+    padding-left: 65px;
+    padding-right: 55px;
     overflow: scroll;
-    height: 500px;
-    padding-left: 70px;
-    padding-right: 55px;
-    padding-left: 70px;
-    padding-right: 55px;
+    height:500px;
 
 }
 
 th, tr {
     text-align: center;
     border: 1px solid black;
+    border-collapse: collapse;
+    padding: 2px;
 
 }
 
 td {
   width: 50px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+      background-color: #eee;
+  }
+tr:nth-child(odd) {
+   background-color:#fff;
+}
+th  {
+    background-color: black;
+    color: white;
 }
 
 #pieChart {    
   position:absolute;
-  top:100px;
-  left:10px;
-  width:400px;
-  height: 350px; 
   top:90px;
   left:510px;
   width:400px;
@@ -59,12 +68,6 @@ td {
 
 #lineChart {    
   position:absolute;
-  top:100px;
-  left:410px;
-  height: 150px;
-  top:100px;
-  left:410px;
-  height: 150px;
   top:375px;
   left:20px;
   height: 150px;
@@ -73,12 +76,6 @@ td {
 
 #barChart {
   position:absolute;
-  top:235px;
-  left:450px;
-  height: 250px;
-  top:235px;
-  left:450px;
-  height: 250px;
   top:480px;
   left:20px;
   height: 250px;
@@ -88,12 +85,6 @@ td {
 
 #scatterChart {
   position:absolute;
-  top:500px;
-  left:600px;
-  height: 250px;
-  top:500px;
-  left:600px;
-  height: 250px;
   top:70px;
   left:825px;
   height: 250px;
@@ -102,11 +93,6 @@ td {
 
 #questiontable {
   position:absolute;
-  top:500px;
-  left:10px;
-  height: 300px;
-  width: 500px;
-  overflow: scroll;
   top:100px;
   left:20px;
   height: 250px;
@@ -150,8 +136,6 @@ td {
 
 .title {
    font-family: Verdana;
-    font-size: 15px;
-    font-size: 10px;
     font-size: 10px;
     font-weight: bold;  
     
@@ -171,7 +155,7 @@ td {
 
 #lineChartTitle1 {
   font-family: Verdana;
-  font-size  : 14px;
+  font-size  : 10px;
   fill       : black;
   font-weight: bold;
   text-anchor: middle;
@@ -179,8 +163,6 @@ td {
 
 #lineChartTitle2 {
   font-family: Verdana;
-  font-size  : 72px;
-  font-size  : 62px;
   font-size  : 62px;
   fill       : black;
   text-anchor: middle;
@@ -235,7 +217,7 @@ div.tooltip3 {
 }
 
 #logo {
-  width: 790px;
+  width: 780px;
   height: 100px;
 }
 
@@ -252,8 +234,6 @@ div.tooltip3 {
 }
 
 .scatterxaxis text {
-  font-size: 10px;
-  font-size: 9px;
   font-size: 9px;
   font-family: sans-serif;
   font-weight: bold;
@@ -287,7 +267,7 @@ table#t01 {
     }
     table#t01 th, table#t01 td {
         padding: 5px;
-        text-align: left;
+        text-align: center;
     }
     table#t01 tr:nth-child(even) {
         background-color: #eee;
@@ -320,7 +300,7 @@ table#t01 {
     
     <div class="dropdown" align = "center">
       <select name="one" class="dropdown-select">
-      <option value="AIXAPAR">Select Technology</option>
+      <option value="AIXAPAR">Select Vendor</option>
       <option value="AIXAPAR">AIXAPAR</option>
       <option value="APPLE">APPLE</option>
       <option value="BID">BID</option>
@@ -670,11 +650,11 @@ function dsPieChart(){
   var   width = 250,
        height = 250,
 
-       outerRadius = Math.min(width, height) / 2,
+       outerRadius = Math.min(width, height) / 2 -10,
        innerRadius = outerRadius * .999,   
        // for animation
        innerRadiusFinal = outerRadius * .5,
-       innerRadiusFinal3 = outerRadius* .45,
+       innerRadiusFinal3 = outerRadius* .4,
        color = d3.scale.category20()    //builtin range of colors
        ;
 
@@ -720,7 +700,7 @@ function dsPieChart(){
                 .style("top", (d3.event.pageY - 28) + "px");
 
                   d3.select(this).select("path").transition()
-                    .duration(750)
+                    .duration(500)
               //.attr("stroke","red")
               //.attr("stroke-width", 1.5)
               .attr("d", arcFinal3)
@@ -731,7 +711,7 @@ function dsPieChart(){
                })
             .on("mouseout", function(d){
               d3.select(this).select("path").transition()
-        .duration(750)
+        .duration(500)
               //.attr("stroke","blue")
               //.attr("stroke-width", 1.5)
               .attr("d", arcFinal)
@@ -751,8 +731,8 @@ function dsPieChart(){
            //.text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });      
 
         d3.selectAll("g.slice").selectAll("path").transition()
-          .duration(750)
-          .delay(10)
+          .duration(500)
+          //.delay(10)
           .attr("d", arcFinal )
           ;
   
@@ -766,7 +746,6 @@ function dsPieChart(){
         //.text(function(d) { return formatAsPercentage(d.value); })
         .text(function(d) { return d.data.category; })
         .attr("font-size","8px")
-        .attr("font-size","8px")
         ;
      
      // Computes the label angle of an arc, converting from radians to degrees.
@@ -778,9 +757,10 @@ function dsPieChart(){
     
     // Pie chart title      
     vis.append("svg:text")
-        .attr("dy", ".35em")
+        .attr("dy", height/2)
+        .attr("dx", width/(width-10))
         .attr("text-anchor", "middle")
-        .text("Technology")
+        .text("Distribution of Vulnerabilities by Vendor")
         .attr("class","title")
         ;       
 
@@ -889,11 +869,10 @@ var color = d3.scale.category20();
 
 
      //Declare the width and height
-     var width = 600;
-     var width = 450;
+
      var width = 450;
      var height = 300;
-     var padding = 30;
+     var padding = 40;
     
 
      //Declare scales
@@ -1024,6 +1003,15 @@ var color = d3.scale.category20();
 
      //Create rectangles
      //svg.selectAll("circle")
+
+      // Pie chart title      
+    svg.append("svg:text")
+        .attr("dy", padding-10)
+        .attr("dx", padding+width/5)
+        //.attr("text-anchor", "middle")
+        .text("Count of Vulnerabilities by Month")
+        .attr("class","title")
+        ;  
       
       
 
@@ -1074,7 +1062,7 @@ var color = d3.scale.category20();
 
      // now add titles to the axes
         svg.append("text")
-          .attr("font-size","8px")
+          .attr("font-size","10px")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
             .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
             .text("Number of Risks")
@@ -1083,7 +1071,7 @@ var color = d3.scale.category20();
 
 
         svg.append("text")
-          .attr("font-size","8px")
+          .attr("font-size","10px")
             .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
             .attr("transform", "translate("+ (width/2) +","+(height-(padding/5))+")")  // centre below axis
             .text("Month")
@@ -10686,10 +10674,6 @@ function datasetBarChosen(group) {
 function dsBarChartBasics() {
 
     var margin = {top: 30, right: 5, bottom: 20, left: 60},
-    width = 800 - margin.left - margin.right,
-    height = 225 - margin.top - margin.bottom,
-    width = 1220 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom,
     width = 1220 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom,
     colorBar = d3.scale.category20(),
@@ -10972,15 +10956,11 @@ function updateBarChart(group, colorChosen) {
     
 
     svg.selectAll("text.title") // target the text element(s) which has a title class defined
-      .attr("x", (width + margin.left + margin.right)/2)
-      .attr("y", 200)
-      .attr("x", (width + margin.left + margin.right)/2 -25)
-      .attr("y", 165)
-      .attr("x", (width + margin.left + margin.right)/2 -25)
+      .attr("x", (width + margin.left + margin.right)/2 -20)
       .attr("y", 165)
       .attr("class","title")        
       .attr("text-anchor", "middle")
-      .text(group + "'s Risk Score 2015-16")
+      .text("Risk Score by Vulnerabilities for "+group)
     ;
 
     //UPDATE TABLE AS WELL
@@ -11027,7 +11007,7 @@ d3.select("table").remove();
     .enter()
     .append("th")
       .text(function(d){ return d;})
-      .on("click", function(d){
+      .on("mouseover", function(d){
         if (d == "source"){
           rows.sort(function(a, b) {
             if (a[d] < b[d]){
@@ -11154,7 +11134,7 @@ function dsLineChartBasics() {
 
   var margin = {top: 20, right: 50, bottom: 5, left: 50},
       width = 1220 - margin.left - margin.right,
-      height = 150 - margin.top - margin.bottom
+      height = 100 - margin.top - margin.bottom
       ;
     
     return {
@@ -11288,11 +11268,8 @@ function dsLineChart() {
   svg.append("text")
     .text("Average Risk Score")
     .attr("id","lineChartTitle1") 
-
-    .attr("x",margin.left + ((width + margin.right)/2))
     .attr("x",margin.left + ((width + margin.right)/2) - 25)
-    .attr("x",margin.left + ((width + margin.right)/2) - 25)
-    .attr("y", 15)
+    .attr("y", 8)
     ;
 
 }
@@ -11418,9 +11395,14 @@ function updateLineChart(group, colorChosen) {
      ;  
 
 }
-  
-    //TABLE CODE
 
+/*
+############################
+----------------------------
+    TABLE CODE
+----------------------------    
+############################
+*/
   //New chart start
 //var svg2 = d3.select("body")
   //.append("svg")
@@ -11432,7 +11414,6 @@ function updateLineChart(group, colorChosen) {
   var table = d3.select("#table-location")
   //.attr("id","graph2")
   .append("table")
-  .attr("id", "tablecool")
   .attr("class", "table table-condensed table-striped")
   .attr("border","1"),
   thead = table.append("thead"),
@@ -11457,7 +11438,7 @@ d3.tsv("cvss_more.tsv", function(error, data){
     .enter()
     .append("th")
       .text(function(d){ return d;})
-      .on("click", function(d){
+      .on("mouseover", function(d){
         if (d == "source"){
           rows.sort(function(a, b) {
             if (a[d] < b[d]){
@@ -11587,7 +11568,6 @@ d3.select("table").remove();
   //.append("container")
   //.attr("id","graph2")
   .append("table")
-  .attr("id", "tablecool")
   .attr("class", "table table-condensed table-striped")
   .attr("border","1"),
   thead = table.append("thead"),
@@ -11599,7 +11579,10 @@ d3.select("table").remove();
 
 
   // filter year
-  var data = data.filter(function(d){return d.Technology == variable});
+  var data = data.filter(function(d){
+
+    return d.Technology == variable
+  });
   // Get every column value
   //console.log(data);
   var columns = Object.keys(data[0])
@@ -11613,7 +11596,7 @@ d3.select("table").remove();
     .enter()
     .append("th")
       .text(function(d){ return d;})
-      .on("click", function(d){
+      .on("mouseover", function(d){
         if (d == "source"){
           rows.sort(function(a, b) {
             if (a[d] < b[d]){
