@@ -17,6 +17,7 @@
     position: absolute;
     top: 900px;
     top: 680px;
+    top: 680px;
     width: 100%;
     float: left;
     border: 1px grey;
@@ -24,6 +25,8 @@
     table-layout: fixed;
     overflow: scroll;
     height: 500px;
+    padding-left: 70px;
+    padding-right: 55px;
     padding-left: 70px;
     padding-right: 55px;
 
@@ -59,6 +62,9 @@ td {
   top:100px;
   left:410px;
   height: 150px;
+  top:100px;
+  left:410px;
+  height: 150px;
   top:375px;
   left:20px;
   height: 150px;
@@ -67,6 +73,9 @@ td {
 
 #barChart {
   position:absolute;
+  top:235px;
+  left:450px;
+  height: 250px;
   top:235px;
   left:450px;
   height: 250px;
@@ -79,6 +88,9 @@ td {
 
 #scatterChart {
   position:absolute;
+  top:500px;
+  left:600px;
+  height: 250px;
   top:500px;
   left:600px;
   height: 250px;
@@ -140,6 +152,7 @@ td {
    font-family: Verdana;
     font-size: 15px;
     font-size: 10px;
+    font-size: 10px;
     font-weight: bold;  
     
 }
@@ -167,6 +180,7 @@ td {
 #lineChartTitle2 {
   font-family: Verdana;
   font-size  : 72px;
+  font-size  : 62px;
   font-size  : 62px;
   fill       : black;
   text-anchor: middle;
@@ -240,6 +254,7 @@ div.tooltip3 {
 .scatterxaxis text {
   font-size: 10px;
   font-size: 9px;
+  font-size: 9px;
   font-family: sans-serif;
   font-weight: bold;
 }
@@ -289,7 +304,6 @@ table#t01 {
   </head>
 
   <body>
-
     <div id="logo">
     <img id ="image" src="s3.png">
     </div>
@@ -577,9 +591,15 @@ function formChanged(){
           
           }
 
+        //}
+
+          
+         // }
+
+
       //Redraw D#
 
-  }
+  //}
       //Radio Button Stuff Ends
 /*
 ################ FORMATS ##################
@@ -647,10 +667,9 @@ function dsPieChart(){
         ]
         ;     
 
-  var   width = 325,
-       height = 325,
   var   width = 250,
        height = 250,
+
        outerRadius = Math.min(width, height) / 2,
        innerRadius = outerRadius * .999,   
        // for animation
@@ -746,6 +765,7 @@ function dsPieChart(){
         .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
         //.text(function(d) { return formatAsPercentage(d.value); })
         .text(function(d) { return d.data.category; })
+        .attr("font-size","8px")
         .attr("font-size","8px")
         ;
      
@@ -870,6 +890,7 @@ var color = d3.scale.category20();
 
      //Declare the width and height
      var width = 600;
+     var width = 450;
      var width = 450;
      var height = 300;
      var padding = 30;
@@ -1058,11 +1079,7 @@ var color = d3.scale.category20();
             .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
             .text("Number of Risks")
             .attr("font-weight", "bold");
-            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
-            .attr("transform", "translate("+ (padding/5) +","+(height/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
-            .text("Number of Risks")
-            .attr("font-weight", "bold")
-            .attr("font-size","8px");
+        
 
 
         svg.append("text")
@@ -10673,6 +10690,8 @@ function dsBarChartBasics() {
     height = 225 - margin.top - margin.bottom,
     width = 1220 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom,
+    width = 1220 - margin.left - margin.right,
+    height = 200 - margin.top - margin.bottom,
     colorBar = d3.scale.category20(),
     barPadding = 1
     ;
@@ -10957,6 +10976,8 @@ function updateBarChart(group, colorChosen) {
       .attr("y", 200)
       .attr("x", (width + margin.left + margin.right)/2 -25)
       .attr("y", 165)
+      .attr("x", (width + margin.left + margin.right)/2 -25)
+      .attr("y", 165)
       .attr("class","title")        
       .attr("text-anchor", "middle")
       .text(group + "'s Risk Score 2015-16")
@@ -11131,8 +11152,6 @@ function datasetLineChartChosen(group) {
 
 function dsLineChartBasics() {
 
-  var margin = {top: 20, right: 40, bottom: 5, left: 50},
-      width = 800 - margin.left - margin.right,
   var margin = {top: 20, right: 50, bottom: 5, left: 50},
       width = 1220 - margin.left - margin.right,
       height = 150 - margin.top - margin.bottom
@@ -11269,11 +11288,10 @@ function dsLineChart() {
   svg.append("text")
     .text("Average Risk Score")
     .attr("id","lineChartTitle1") 
-<<<<<<< HEAD
+
     .attr("x",margin.left + ((width + margin.right)/2))
-=======
     .attr("x",margin.left + ((width + margin.right)/2) - 25)
->>>>>>> master
+    .attr("x",margin.left + ((width + margin.right)/2) - 25)
     .attr("y", 15)
     ;
 
@@ -11287,10 +11305,6 @@ dsLineChart();
 /* updates bar chart on request */
 function updateLineChart(group, colorChosen) {
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
   var currentDatasetLineChart = datasetLineChartChosen(group); 
   //console.log(currentDatasetLineChart.length);  
 
@@ -11651,9 +11665,8 @@ d3.select("table").remove();
 
   })
 
-
-
     </script>
+    </script> 
     </script> 
   </body>
 </html>
